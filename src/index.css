@@ -1,0 +1,834 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* From Uiverse.io by doniaskima */ 
+.btn-53,
+.btn-53 *,
+.btn-53 :after,
+.btn-53 :before,
+.btn-53:after,
+.btn-53:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+/* From Uiverse.io by barisdogansutcu */ 
+.lets-talk-btn {
+ border: none;
+ position: relative;
+ width: 200px;
+ height: 73px;
+ padding: 0;
+ z-index: 2;
+ -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+ mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E") no-repeat 50% 50%;
+ -webkit-mask-size: 100%;
+ cursor: pointer;
+ background-color: transparent;
+ transform: translateY(8px)
+}
+
+.lets-talk-btn:after {
+ content: '';
+ position: absolute;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ box-shadow: 0px 0 0 0 white;
+ transition: all 2s ease;
+}
+
+.lets-talk-btn:hover:after {
+ box-shadow: 0px -13px 56px 12px #ffffffa6;
+}
+
+.lets-talk-btn span {
+ position: absolute;
+ width: 100%;
+ font-size: 15px;
+ font-weight: 100;
+ left: 50%;
+ top: 39%;
+ letter-spacing: 3px;
+ text-align: center;
+ transform: translate(-50%,-50%);
+ color: black;
+ transition: all 2s ease;
+}
+
+.lets-talk-btn:hover span {
+ color: white;
+}
+
+.lets-talk-btn:before {
+ content: '';
+ position: absolute;
+ width: 0;
+ height: 100%;
+ background-color: black;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ transition: all 1s ease;
+}
+
+.lets-talk-btn:hover:before {
+ width: 100%;
+}
+
+.btn-53 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+}
+
+.btn-53:disabled {
+  cursor: default;
+}
+
+.btn-53:-moz-focusring {
+  outline: auto;
+}
+
+.btn-53 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-53 [hidden] {
+  display: none;
+}
+
+.btn-53 {
+  border: 1px solid;
+  border-radius: 999px;
+  box-sizing: border-box;
+  display: block;
+  font-weight: 900;
+  overflow: hidden;
+  padding: 1.2rem 3rem;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.btn-53 .original {
+  background: #fff;
+  color: #000;
+  display: grid;
+  inset: 0;
+  place-content: center;
+  position: absolute;
+  transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.btn-53:hover .original {
+  transform: translateY(100%);
+}
+
+.btn-53 .letters {
+  display: inline-flex;
+}
+
+.btn-53 span {
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: transform 0.2s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.2s;
+}
+
+.btn-53 span:nth-child(2n) {
+  transform: translateY(15px);
+}
+
+.btn-53:hover span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn-53:hover span:nth-child(2) { transition-delay: 0.05s; }
+.btn-53:hover span:nth-child(3) { transition-delay: 0.1s; }
+.btn-53:hover span:nth-child(4) { transition-delay: 0.15s; }
+.btn-53:hover span:nth-child(5) { transition-delay: 0.2s; }
+.btn-53:hover span:nth-child(6) { transition-delay: 0.25s; }
+.btn-53:hover span:nth-child(7) { transition-delay: 0.3s; }
+.btn-53:hover span:nth-child(8) { transition-delay: 0.35s; }
+.btn-53:hover span:nth-child(9) { transition-delay: 0.4s; }
+.btn-53:hover span:nth-child(10) { transition-delay: 0.45s; }
+.btn-53:hover span:nth-child(11) { transition-delay: 0.5s; }
+.btn-53:hover span:nth-child(12) { transition-delay: 0.55s; }
+.btn-53:hover span:nth-child(13) { transition-delay: 0.6s; }
+
+/* From Uiverse.io by doniaskima */ 
+.btn-17,
+.btn-17 *,
+.btn-17 :after,
+.btn-17 :before,
+.btn-17:after,
+.btn-17:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-17 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.btn-17:disabled {
+  cursor: default;
+}
+
+.btn-17:-moz-focusring {
+  outline: auto;
+}
+
+.btn-17 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-17 [hidden] {
+  display: none;
+}
+
+.btn-17 {
+  border-radius: 99rem;
+  border-width: 2px;
+  padding: 0.8rem 3rem;
+  z-index: 0;
+}
+
+.btn-17,
+.btn-17 .text-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-17 .text-container {
+  display: block;
+  mix-blend-mode: difference;
+}
+
+.btn-17 .text {
+  display: block;
+  position: relative;
+}
+
+.btn-17:hover .text {
+  -webkit-animation: move-up-alternate 0.3s forwards;
+  animation: move-up-alternate 0.3s forwards;
+}
+
+@-webkit-keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.btn-17:after,
+.btn-17:before {
+  --skew: 0.2;
+  background: #fff;
+  content: "";
+  display: block;
+  height: 102%;
+  left: calc(-50% - 50% * var(--skew));
+  pointer-events: none;
+  position: absolute;
+  top: -104%;
+  transform: skew(calc(150deg * var(--skew))) translateY(var(--progress, 0));
+  transition: transform 0.2s ease;
+  width: 100%;
+}
+
+.btn-17:after {
+  --progress: 0%;
+  left: calc(50% + 50% * var(--skew));
+  top: 102%;
+  z-index: -1;
+}
+
+.btn-17:hover:before {
+  --progress: 100%;
+}
+
+.btn-17:hover:after {
+  --progress: -102%;
+}
+
+/* Social Tooltip CSS */
+.tooltip-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 17px;
+  border-radius: 10px;
+  --brand-color: #f97316;
+}
+.tooltip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  border-radius: 15px;
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  z-index: 50;
+}
+.profile {
+  background: #2a2b2f;
+  border-radius: 10px 15px;
+  padding: 10px;
+  border: 1px solid #52382f;
+  width: max-content;
+}
+.tooltip-container:hover .tooltip {
+  top: -150px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.icon {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  position: relative;
+}
+.layer {
+  width: 55px;
+  height: 55px;
+  transition: transform 0.3s;
+}
+.icon:hover .layer {
+  transform: rotate(-35deg) skew(20deg);
+}
+.layer span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+.layer span,
+.icon .text {
+  color: var(--brand-color);
+  border-color: var(--brand-color);
+}
+.icon:hover .layer span {
+  box-shadow: -1px 1px 3px var(--brand-color);
+}
+.icon .text {
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  opacity: 0;
+  font-weight: 500;
+  transform: translateX(-50%);
+  transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+.icon:hover .text {
+  bottom: -35px;
+  opacity: 1;
+}
+.icon:hover .layer span:nth-child(1) {
+  opacity: 0.2;
+}
+.icon:hover .layer span:nth-child(2) {
+  opacity: 0.4;
+  transform: translate(5px, -5px);
+}
+.icon:hover .layer span:nth-child(3) {
+  opacity: 0.6;
+  transform: translate(10px, -10px);
+}
+.icon:hover .layer span:nth-child(4) {
+  opacity: 0.8;
+  transform: translate(15px, -15px);
+}
+.icon:hover .layer span:nth-child(5) {
+  opacity: 1;
+  transform: translate(20px, -20px);
+}
+.socialSVG {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-bg, var(--brand-color));
+  border-radius: 15px;
+}
+.user {
+  display: flex;
+  gap: 10px;
+}
+.img {
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  font-weight: 700;
+  border: 1px solid var(--brand-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: var(--brand-color);
+}
+.name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brand-color);
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: #fff;
+  text-align: left;
+}
+.about {
+  color: #ccc;
+  padding-top: 5px;
+  font-size: 14px;
+  text-align: left;
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 1.5s ease-in-out infinite;
+}
+
+/* From Uiverse.io by Subaashbala - Enhanced */ 
+.loader {
+  font-size: 2em;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader .bracket {
+  color: #ff5900;
+  text-shadow: 0 0 5px rgba(255, 89, 0, 0.4), 0 0 10px rgba(255, 89, 0, 0.2);
+  display: inline-flex;
+}
+.loader .text-container {
+  display: inline-flex;
+  margin: 0 10px;
+}
+.loader .letter {
+  background: linear-gradient(180deg, #ffd700 0%, #ff5900 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-flex;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: revealLetter 0.5s ease forwards;
+  filter: drop-shadow(0 0 5px rgba(255, 89, 0, 0.4));
+}
+@keyframes revealLetter {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.loader .cursor {
+  animation: blink 0.7s infinite;
+  color: #ff5900;
+  display: inline-block;
+  margin-left: 2px;
+  text-shadow: 0 0 5px rgba(255, 89, 0, 0.4), 0 0 10px rgba(255, 89, 0, 0.2);
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* From Uiverse.io by marcelodolza */ 
+.button {
+  --primary: #f97316; /* Updated to match theme orange */
+  --neutral-1: #18181b; /* Updated to match dark theme */
+  --neutral-2: #27272a; /* Updated to match dark theme */
+  --radius: 14px;
+
+  cursor: pointer;
+  border-radius: var(--radius);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  border: none;
+  box-shadow: 0 0.5px 0.5px 1px rgba(255, 255, 255, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 5px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  padding: 20px;
+  height: 68px;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+.button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 1px 2px rgba(255, 255, 255, 0.2),
+    0 15px 30px rgba(0, 0, 0, 0.3), 0 10px 3px -3px rgba(0, 0, 0, 0.04);
+}
+.button:active {
+  transform: scale(1);
+  box-shadow: 0 0 1px 2px rgba(255, 255, 255, 0.2),
+    0 10px 3px -3px rgba(0, 0, 0, 0.2);
+}
+.button:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  border: 2.5px solid transparent;
+  background: linear-gradient(var(--neutral-1), var(--neutral-2)) padding-box,
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.45))
+      border-box;
+  z-index: 0;
+  transition: all 0.4s ease;
+}
+.button:hover::after {
+  transform: scale(1.05, 1.1);
+  box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, 0.2);
+}
+.button::before {
+  content: "";
+  inset: 7px 6px 6px 6px;
+  position: absolute;
+  background: linear-gradient(to top, var(--neutral-1), var(--neutral-2));
+  border-radius: 30px;
+  filter: blur(0.5px);
+  z-index: 2;
+}
+.state p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+.state .icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  transform: scale(1.25);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.state .icon svg {
+  overflow: visible;
+}
+
+/* Outline */
+.outline {
+  position: absolute;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  inset: -2px -3.5px;
+}
+.outline::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 180deg,
+    transparent 60%,
+    white 80%,
+    transparent 100%
+  );
+  animation: spin 2s linear infinite;
+  animation-play-state: paused;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.button:hover .outline {
+  opacity: 1;
+}
+.button:hover .outline::before {
+  animation-play-state: running;
+}
+
+/* Letters */
+.state p span {
+  display: block;
+  opacity: 0;
+  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.03s);
+}
+.button:hover p span {
+  opacity: 1;
+  animation: wave 0.5s ease forwards calc(var(--i) * 0.02s);
+}
+.button:focus p span, .button.is-active p span {
+  opacity: 1;
+  animation: disapear 0.6s ease forwards calc(var(--i) * 0.03s);
+}
+@keyframes wave {
+  30% {
+    opacity: 1;
+    transform: translateY(4px) translateX(0) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px) translateX(0) rotate(0);
+    color: var(--primary);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotate(0);
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) translateX(5px) rotate(-90deg);
+    color: var(--primary);
+    filter: blur(5px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(4px) translateX(0) rotate(0);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px) translateX(0) rotate(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) rotate(0);
+  }
+}
+@keyframes disapear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(5px) translateY(20px);
+    color: var(--primary);
+    filter: blur(5px);
+  }
+}
+
+/* Plane */
+.state--default .icon svg {
+  animation: land 0.6s ease forwards;
+}
+.button:hover .state--default .icon {
+  transform: rotate(45deg) scale(1.25);
+}
+.button:focus .state--default svg, .button.is-active .state--default svg {
+  animation: takeOff 0.8s linear forwards;
+}
+.button:focus .state--default .icon, .button.is-active .state--default .icon {
+  transform: rotate(0) scale(1.25);
+}
+@keyframes takeOff {
+  0% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(70px) rotate(45deg) scale(2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(160px) rotate(45deg) scale(0);
+  }
+}
+@keyframes land {
+  0% {
+    transform: translateX(-60px) translateY(30px) rotate(-50deg) scale(2);
+    opacity: 0;
+    filter: blur(3px);
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Contrail */
+.state--default .icon:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 2px;
+  width: 0;
+  left: -5px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5));
+}
+.button:focus .state--default .icon:before, .button.is-active .state--default .icon:before {
+  animation: contrail 0.8s linear forwards;
+}
+@keyframes contrail {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  8% {
+    width: 15px;
+  }
+  60% {
+    opacity: 0.7;
+    width: 80px;
+  }
+  100% {
+    opacity: 0;
+    width: 160px;
+  }
+}
+
+/* States */
+.state {
+  padding-left: 29px;
+  z-index: 2;
+  display: flex;
+  position: relative;
+}
+.state--default span:nth-child(4) {
+  margin-right: 5px;
+}
+.state--sent {
+  display: none;
+}
+.state--sent svg {
+  transform: scale(1.25);
+  margin-right: 8px;
+}
+.button:focus .state--default, .button.is-active .state--default {
+  position: absolute;
+}
+.button:focus .state--sent, .button.is-active .state--sent {
+  display: flex;
+}
+.button:focus .state--sent span, .button.is-active .state--sent span {
+  opacity: 0;
+  animation: slideDown 0.8s ease forwards calc(var(--i) * 0.2s);
+}
+.button:focus .state--sent .icon svg, .button.is-active .state--sent .icon svg {
+  opacity: 0;
+  animation: appear 1.2s ease forwards 0.8s;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(4) rotate(-40deg);
+    color: var(--primary);
+    filter: blur(4px);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(0.6);
+    filter: blur(1px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
