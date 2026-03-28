@@ -11,6 +11,34 @@ import heroVideo from "./Robot_Waves_Hand_for_Website.mp4";
 import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
 import { IconCloudDemo } from "./components/ui/icon-cloud-demo";
 import StickySlide from "./components/StickySlide";
+import ProjectCarousel from "./components/ProjectCarousel";
+
+const projects = [
+  {
+    id: 1,
+    title: "Project Title 1",
+    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
+    tag: "01 // PROJECT"
+  },
+  {
+    id: 2,
+    title: "Project Title 2",
+    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
+    tag: "02 // PROJECT"
+  },
+  {
+    id: 3,
+    title: "Project Title 3",
+    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
+    tag: "03 // PROJECT"
+  },
+  {
+    id: 4,
+    title: "Project Title 4",
+    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
+    tag: "04 // PROJECT"
+  }
+];
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(() => {
@@ -82,17 +110,15 @@ export default function App() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
           >
-            <div className="loader">
-              <span className="bracket">&lt;</span>
-              <span className="text-container">
-                {"Welcome to my PortFolio".split("").map((char, index) => (
-                  <span key={index} style={{ animationDelay: `${index * 0.1}s` }} className="letter">
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                ))}
-              </span>
-              <span className="bracket">/&gt;</span>
-              <span className="cursor">|</span>
+            <div className="loader-wrapper">
+              <span className="loader-letter">W</span>
+              <span className="loader-letter">e</span>
+              <span className="loader-letter">l</span>
+              <span className="loader-letter">c</span>
+              <span className="loader-letter">o</span>
+              <span className="loader-letter">m</span>
+              <span className="loader-letter">e</span>
+              <div className="loader"></div>
             </div>
           </motion.div>
         )}
@@ -541,37 +567,7 @@ export default function App() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[1, 2, 3, 4].map((item, index) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: (index % 2) * 0.2 }}
-                className="group relative h-[400px] rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/30 hover:border-orange-500/50 transition-colors"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105 transform">
-                  <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full p-8 z-20">
-                  <div className="flex justify-between items-end">
-                    <div>
-                      <div className="text-orange-500 text-sm font-bold tracking-widest mb-2">0{item} // PROJECT</div>
-                      <h3 className="text-2xl font-bold uppercase tracking-wide mb-2">Project Title {item}</h3>
-                      <p className="text-white/60 text-sm max-w-sm">
-                        Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.
-                      </p>
-                    </div>
-                    <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-orange-500 group-hover:text-black transition-all cursor-pointer">
-                      <ArrowRight size={20} />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <ProjectCarousel projects={projects} />
         </div>
       </section>
       </StickySlide>
