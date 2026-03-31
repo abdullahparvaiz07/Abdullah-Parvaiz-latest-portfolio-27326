@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { Hexagon, Scan, Sparkles, Zap, ArrowRight, Github, Linkedin, Mail, Code2, Layers, Cpu, Globe, Server, PenTool, Wrench, Loader2, CheckCircle2, AlertCircle, Send } from "lucide-react";
+import { Hexagon, Scan, Sparkles, Zap, ArrowRight, Github, Linkedin, Mail, Code2, Layers, Cpu, Globe, Server, PenTool, Wrench, Loader2, CheckCircle2, AlertCircle, Send, Download } from "lucide-react";
 import Hero3D from "./components/Hero3D";
 import NewsCard from "./components/NewsCard";
 import heroVideo from "./Robot_Waves_Hand_for_Website.mp4";
@@ -12,6 +12,9 @@ import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
 import { IconCloudDemo } from "./components/ui/icon-cloud-demo";
 import StickySlide from "./components/StickySlide";
 import ProjectCarousel from "./components/ProjectCarousel";
+import Chatbot from "./components/Chatbot";
+import CustomCursor from "./components/CustomCursor";
+import KeyboardShortcuts from "./components/KeyboardShortcuts";
 
 const projects = [
   {
@@ -123,6 +126,8 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <CustomCursor />
+      <KeyboardShortcuts />
 
       <div className="bg-black text-white font-sans selection:bg-orange-500/30">
         <motion.div
@@ -173,8 +178,18 @@ export default function App() {
             </a>
           </nav>
 
-          {/* Spacer to perfectly center the nav on desktop */}
-          <div className="md:flex-1 hidden md:block"></div>
+          {/* Resume Button (Right Side) */}
+          <div className="md:flex-1 flex items-center justify-center md:justify-end w-full md:w-auto">
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-orange-500 text-black px-6 py-2.5 rounded-full hover:bg-orange-400 transition-all duration-300 font-bold text-sm shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] hover:scale-105"
+            >
+              <Download size={16} />
+              RESUME
+            </a>
+          </div>
         </motion.div>
 
         {/* Main Content Grid */}
@@ -188,7 +203,7 @@ export default function App() {
             className="lg:col-span-7 flex flex-col justify-center"
           >
             <h1 className="text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-bold uppercase leading-[0.85] tracking-[-0.02em] mb-8 hover:text-orange-400 transition-colors duration-300">
-              ABDULLAH // <br/>
+              ABDULLAH <br/>
               PARVAIZ <br/>
               PORTFOLIO
             </h1>
@@ -258,13 +273,13 @@ export default function App() {
         >
           {/* Tags */}
           <div className="flex flex-wrap items-center justify-center lg:justify-end text-xs font-medium tracking-widest uppercase shrink-0">
-            <div className="px-4 py-2 border border-white/40 rounded-full">TS RAW</div>
+            <div className="px-4 py-2 border border-white/40 rounded-full">Let's</div>
             <div className="w-4 h-[1px] bg-white/40 hidden sm:block"></div>
-            <div className="px-3 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">A+</div>
+            <div className="px-3 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">we</div>
             <div className="w-4 h-[1px] bg-white/40 hidden sm:block"></div>
-            <div className="px-4 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">FULL-STACK</div>
+            <div className="px-4 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">Build</div>
             <div className="w-4 h-[1px] bg-white/40 hidden sm:block"></div>
-            <div className="px-4 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">SYSTEM-SYNC</div>
+            <div className="px-4 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">Together</div>
           </div>
         </motion.div>
       </section>
@@ -925,6 +940,7 @@ export default function App() {
         </div>
       </section>
       </StickySlide>
+      <Chatbot />
     </div>
     </>
   );

@@ -5,6 +5,17 @@
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 }
 
+@layer base {
+  @media (min-width: 768px) {
+    html, body {
+      cursor: none;
+    }
+    a, button, .cursor-pointer {
+      cursor: none;
+    }
+  }
+}
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
