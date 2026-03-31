@@ -22,7 +22,11 @@ export default function Chatbot() {
 
   useEffect(() => {
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        console.error("API Key is missing! Check Vercel environment variables.");
+      }
+      const ai = new GoogleGenAI({ apiKey: apiKey as string });
       chatRef.current = ai.chats.create({
         model: "gemini-3-flash-preview",
         config: {
