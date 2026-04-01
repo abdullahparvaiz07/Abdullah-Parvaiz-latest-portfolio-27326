@@ -178,17 +178,8 @@ export default function App() {
             </a>
           </nav>
 
-          {/* Resume Button (Right Side) */}
+          {/* Empty div to maintain flex layout if needed, or just remove entirely. Let's just remove the button and keep the flex layout balanced by leaving an empty div or removing it. Actually, removing the div might unbalance the flex-between if it relies on 3 elements. Let's keep an empty div to maintain spacing. */}
           <div className="md:flex-1 flex items-center justify-center md:justify-end w-full md:w-auto">
-            <a 
-              href="/resume.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-orange-500 text-black px-6 py-2.5 rounded-full hover:bg-orange-400 transition-all duration-300 font-bold text-sm shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] hover:scale-105"
-            >
-              <Download size={16} />
-              RESUME
-            </a>
           </div>
         </motion.div>
 
@@ -204,8 +195,7 @@ export default function App() {
           >
             <h1 className="text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-bold uppercase leading-[0.85] tracking-[-0.02em] mb-8 hover:text-orange-400 transition-colors duration-300">
               ABDULLAH <br/>
-              PARVAIZ <br/>
-              PORTFOLIO
+              PARVAIZ
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-md opacity-90 font-medium hover:text-orange-400 transition-colors duration-300">
               Engineered with high-end code and a zero-latency stack for those who don't just build the future—they ship it. Shift your reality.
@@ -316,9 +306,22 @@ export default function App() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-[1px] w-12 bg-orange-500"></div>
-                <span className="text-orange-500 text-sm font-bold tracking-widest uppercase">Identification</span>
+              <div className="flex items-center gap-6 mb-8">
+                <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-full overflow-hidden border-2 border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0.3)]">
+                  <img 
+                    src="https://picsum.photos/seed/abdullah/400/400" 
+                    alt="Abdullah Parvaiz" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="h-[1px] w-8 bg-orange-500"></div>
+                    <span className="text-orange-500 text-sm font-bold tracking-widest uppercase">Identification</span>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">Abdullah Parvaiz</h3>
+                </div>
               </div>
               
               <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tight mb-8 leading-[0.9] flex flex-col py-2">

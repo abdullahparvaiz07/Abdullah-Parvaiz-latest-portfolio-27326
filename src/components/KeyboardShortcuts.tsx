@@ -39,9 +39,6 @@ export default function KeyboardShortcuts() {
         case "c":
           document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
           break;
-        case "r":
-          window.open("/resume.pdf", "_blank");
-          break;
         case "k":
           window.dispatchEvent(new CustomEvent("toggle-chatbot"));
           break;
@@ -66,7 +63,6 @@ export default function KeyboardShortcuts() {
     { key: "3 / P", label: "Projects", icon: <Briefcase size={16} /> },
     { key: "4 / N", label: "News", icon: <Newspaper size={16} /> },
     { key: "5 / C", label: "Contact", icon: <Mail size={16} /> },
-    { key: "R", label: "Resume", icon: <Download size={16} /> },
     { key: "K", label: "Toggle Chat", icon: <MessageSquare size={16} /> },
     { key: "?", label: "Show Help", icon: <Keyboard size={16} /> },
   ];
