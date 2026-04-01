@@ -151,7 +151,7 @@ export default function App() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col md:flex-row justify-between items-center w-full mb-12 lg:mb-20 relative z-10 gap-6 md:gap-0"
+          className="flex flex-col md:flex-row justify-between items-center w-full mb-12 lg:mb-20 relative z-50 gap-6 md:gap-0"
         >
           {/* Logo */}
           <div className="md:flex-1 flex items-center justify-center md:justify-start w-full md:w-auto">
