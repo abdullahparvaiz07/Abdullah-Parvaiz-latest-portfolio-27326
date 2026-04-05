@@ -7,6 +7,7 @@ interface Project {
   title: string;
   description: string;
   tag: string;
+  link?: string;
 }
 
 interface ProjectCarouselProps {
@@ -79,9 +80,15 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                     {project.description}
                   </p>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-orange-500 group-hover:text-black transition-all cursor-pointer">
-                  <ArrowRight size={20} />
-                </div>
+                {project.link ? (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-orange-500 group-hover:text-black transition-all cursor-pointer text-white">
+                    <ArrowRight size={20} />
+                  </a>
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-orange-500 group-hover:text-black transition-all cursor-pointer">
+                    <ArrowRight size={20} />
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
@@ -135,13 +142,18 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
                 <div className="flex items-center gap-4 mt-4">
                   <button 
                     onClick={() => paginate(-1)}
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all"
+                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all shrink-0"
                   >
                     <ArrowLeft size={20} />
                   </button>
+                  {projects[currentIndex].link && (
+                    <a href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer" className="flex-1 h-12 rounded-full sm:text-sm text-xs bg-orange-500/10 text-orange-500 font-bold tracking-widest uppercase flex items-center justify-center border border-orange-500/30 hover:bg-orange-500 hover:text-black transition-all">
+                       Visit Site
+                    </a>
+                  )}
                   <button 
                     onClick={() => paginate(1)}
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all"
+                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all shrink-0"
                   >
                     <ArrowRight size={20} />
                   </button>

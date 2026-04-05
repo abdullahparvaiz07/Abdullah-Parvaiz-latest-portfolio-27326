@@ -19,27 +19,24 @@ import KeyboardShortcuts from "./components/KeyboardShortcuts";
 const projects = [
   {
     id: 1,
-    title: "Project Title 1",
-    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
-    tag: "01 // PROJECT"
+    title: "PortFolyn",
+    description: "A professional CV & portfolio builder featuring advanced templates, dynamic data integration, and seamless export for creative professionals.",
+    tag: "01 // SAAS",
+    link: "https://portfolyn-one.vercel.app/"
   },
   {
     id: 2,
-    title: "Project Title 2",
-    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
-    tag: "02 // PROJECT"
+    title: "Subledge",
+    description: "An intuitive subscription manager that helps you track expenses, optimize billing cycles, and prevent unwanted renewals and charges.",
+    tag: "02 // WEB APP",
+    link: "https://abdullahparvaiz07.github.io/Subledge/"
   },
   {
     id: 3,
-    title: "Project Title 3",
-    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
-    tag: "03 // PROJECT"
-  },
-  {
-    id: 4,
-    title: "Project Title 4",
-    description: "Advanced web application featuring real-time data synchronization and a custom WebGL rendering engine.",
-    tag: "04 // PROJECT"
+    title: "FitNexa AI",
+    description: "An AI-powered fitness application designed to analyze workout routines, recommend tailored exercises, and help users train smarter.",
+    tag: "03 // AI PLATFORM",
+    link: "https://fit-nexa-ai.vercel.app/"
   }
 ];
 
@@ -114,13 +111,13 @@ export default function App() {
             className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
           >
             <div className="loader-wrapper">
-              <span className="loader-letter">W</span>
-              <span className="loader-letter">e</span>
               <span className="loader-letter">l</span>
-              <span className="loader-letter">c</span>
               <span className="loader-letter">o</span>
-              <span className="loader-letter">m</span>
-              <span className="loader-letter">e</span>
+              <span className="loader-letter">a</span>
+              <span className="loader-letter">d</span>
+              <span className="loader-letter">i</span>
+              <span className="loader-letter">n</span>
+              <span className="loader-letter">g</span>
               <div className="loader"></div>
             </div>
           </motion.div>
