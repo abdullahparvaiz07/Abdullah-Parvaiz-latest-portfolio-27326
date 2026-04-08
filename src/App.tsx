@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from "react";
-import { Hexagon, Scan, Sparkles, Zap, ArrowRight, Github, Linkedin, Mail, Code2, Layers, Cpu, Globe, Server, PenTool, Wrench, Loader2, CheckCircle2, AlertCircle, Send, Download } from "lucide-react";
+import { Hexagon, Scan, Sparkles, Zap, ArrowRight, Github, Linkedin, Mail, Code2, Layers, Cpu, Globe, Server, PenTool, Wrench, Loader2, CheckCircle2, AlertCircle, Send, Download, Atom, Triangle, Box, Wind, LayoutTemplate, Database, Leaf, Flame, Network, RefreshCw, GitBranch, Cloud, Figma as FigmaIcon } from "lucide-react";
 import Hero3D from "./components/Hero3D";
 import NewsCard from "./components/NewsCard";
 import heroVideo from "./Robot_Waves_Hand_for_Website.mp4";
@@ -404,139 +404,239 @@ export default function App() {
 
       {/* Skills Section */}
       <StickySlide>
-      <section id="skills" className="min-h-screen py-32 px-6 md:px-12 lg:px-16 relative border-t border-white/10 overflow-hidden bg-zinc-950">
-        {/* Background elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-[100px] pointer-events-none"></div>
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] pointer-events-none"></div>
-        </div>
+      <section id="skills" className="min-h-screen py-32 px-6 md:px-12 lg:px-16 flex flex-col justify-center relative border-t border-white/10 overflow-hidden bg-[#0a0a0a]">
+        
+        {/* Subtle radial glow and noise */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay z-10 pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
 
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center text-center mb-20"
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-[1px] w-12 bg-orange-500"></div>
-              <span className="text-orange-500 text-sm font-bold tracking-widest uppercase">Expertise</span>
-              <div className="h-[1px] w-12 bg-orange-500"></div>
-            </div>
+        <div className="max-w-6xl mx-auto w-full relative z-20">
+          
+          {/* Section Header */}
+          <div className="mb-20">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex items-center gap-4 mb-6"
+            >
+              <span className="text-orange-500 text-[11px] font-bold tracking-[0.15em] uppercase">What I Bring</span>
+            </motion.div>
             
-            <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tight leading-[0.9]">
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">WHAT CAN</span>
-              <span className="block text-orange-500">I DO?</span>
+            <h2 className="text-[56px] font-[800] text-white leading-[0.9] tracking-tight mb-8">
+              <div className="overflow-hidden">
+                <motion.div initial={{ y: "100%" }} whileInView={{ y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.16,1,0.3,1] }}>
+                  Expertise &
+                </motion.div>
+              </div>
+              <div className="overflow-hidden inline-block relative py-1">
+                <motion.div initial={{ y: "100%" }} whileInView={{ y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: [0.16,1,0.3,1] }}>
+                  Tech Stack
+                </motion.div>
+                {/* Animated SVG underline */}
+                <motion.svg className="absolute -bottom-2 left-0 w-full h-[6px] overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 10">
+                  <motion.path 
+                    d="M 0 5 Q 50 0 100 5" 
+                    fill="none" 
+                    stroke="#f97316" 
+                    strokeWidth="3" 
+                    initial={{ pathLength: 0 }} 
+                    whileInView={{ pathLength: 1 }} 
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.5, ease: "easeOut" }} 
+                  />
+                </motion.svg>
+              </div>
             </h2>
-          </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Frontend Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-white/5 rounded-3xl p-8 hover:bg-white/10 transition-colors duration-500 group relative overflow-hidden"
-              >
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500 group-hover:scale-110 transform origin-top-right">
-                <Code2 size={100} strokeWidth={1} />
-              </div>
-              <Code2 className="text-orange-500 mb-6 relative z-10" size={32} strokeWidth={1.5} />
-              <h3 className="text-xl font-bold uppercase tracking-wide mb-4 relative z-10">Frontend</h3>
-              <ul className="space-y-3 relative z-10">
-                {['React & Next.js', 'TypeScript', 'Tailwind CSS', 'Three.js / WebGL', 'Framer Motion'].map((skill) => (
-                  <li key={skill} className="text-white/70 text-sm flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></div>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Backend Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white/5 rounded-3xl p-8 hover:bg-white/10 transition-colors duration-500 group relative overflow-hidden"
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-[15px] text-[#666] max-w-sm leading-[1.7]"
             >
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500 group-hover:scale-110 transform origin-top-right">
-                <Server size={100} strokeWidth={1} />
-              </div>
-              <Server className="text-orange-500 mb-6 relative z-10" size={32} strokeWidth={1.5} />
-              <h3 className="text-xl font-bold uppercase tracking-wide mb-4 relative z-10">Backend</h3>
-              <ul className="space-y-3 relative z-10">
-                {['Node.js & Express', 'PostgreSQL', 'MongoDB', 'Firebase', 'RESTful APIs'].map((skill) => (
-                  <li key={skill} className="text-white/70 text-sm flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></div>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* UI/UX Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white/5 rounded-3xl p-8 hover:bg-white/10 transition-colors duration-500 group relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500 group-hover:scale-110 transform origin-top-right">
-                <PenTool size={100} strokeWidth={1} />
-              </div>
-              <PenTool className="text-orange-500 mb-6 relative z-10" size={32} strokeWidth={1.5} />
-              <h3 className="text-xl font-bold uppercase tracking-wide mb-4 relative z-10">UI/UX Design</h3>
-              <ul className="space-y-3 relative z-10">
-                {['Figma', 'Prototyping', 'Wireframing', 'Design Systems', 'User Research'].map((skill) => (
-                  <li key={skill} className="text-white/70 text-sm flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></div>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Tools Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white/5 rounded-3xl p-8 hover:bg-white/10 transition-colors duration-500 group relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity duration-500 group-hover:scale-110 transform origin-top-right">
-                <Wrench size={100} strokeWidth={1} />
-              </div>
-              <Wrench className="text-orange-500 mb-6 relative z-10" size={32} strokeWidth={1.5} />
-              <h3 className="text-xl font-bold uppercase tracking-wide mb-4 relative z-10">Tools & DevOps</h3>
-              <ul className="space-y-3 relative z-10">
-                {['Git & GitHub', 'Docker', 'AWS', 'Vercel', 'CI/CD Pipelines'].map((skill) => (
-                  <li key={skill} className="text-white/70 text-sm flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500/50"></div>
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+              Every tool chosen with purpose.<br/>
+              Every line written with intent.
+            </motion.p>
           </div>
 
-          {/* Icon Cloud */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="lg:col-span-5 flex justify-center w-full"
-          >
-            <IconCloudDemo />
-          </motion.div>
-          </div>
+          {/* Cards Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {/* FRONTEND HERO CARD */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}
+              className="lg:col-span-2 bg-[#0d0d0d] border border-[#1a1a1a] border-t-2 border-t-orange-500 rounded-[16px] p-8 md:p-10 relative overflow-hidden group hover:border-[#2a2a2a] hover:border-t-orange-500 hover:-translate-y-1.5 transition-all duration-400 shadow-2xl"
+            >
+              {/* Subtle top-left glow */}
+              <div className="absolute top-0 left-0 w-48 h-48 bg-orange-500/5 blur-[80px] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
+              {/* Dot grid pattern bg */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, rgba(255,255,255,1) 1px, transparent 0)", backgroundSize: "24px 24px" }}></div>
+
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
+                <div className="max-w-xs">
+                  <Code2 size={32} className="text-orange-500 mb-6" />
+                  <h3 className="text-[22px] font-bold text-white tracking-[0.1em] uppercase mb-3">Frontend<br/>Engineering</h3>
+                  <p className="text-[#555] text-[14px] leading-[1.7]">
+                    Architecting scalable, zero-latency user interfaces with modern reactive paradigms.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-x-8 gap-y-6">
+                  {[
+                    { icon: Atom, name: "React" },
+                    { icon: Triangle, name: "Next.js" },
+                    { icon: Box, name: "Three.js" },
+                    { icon: Wind, name: "Tailwind" },
+                    { icon: LayoutTemplate, name: "Framer" }
+                  ].map((tech, i) => (
+                    <motion.div 
+                      key={tech.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.4 + (i * 0.08) }}
+                      className="flex flex-col items-center gap-3 cursor-pointer group/logo"
+                    >
+                      <div className="text-white/20 group-hover/logo:text-white group-hover/logo:scale-110 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                        <tech.icon size={48} strokeWidth={1.5} className="group-hover/logo:text-orange-500 transition-colors duration-400" />
+                      </div>
+                      <span className="text-[10px] uppercase font-bold text-[#555] tracking-[0.05em] group-hover/logo:text-orange-500 transition-colors duration-400">
+                        {tech.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+
+            {/* BACKEND CARD */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.12, ease: [0.16,1,0.3,1] }}
+              className="lg:col-span-1 bg-[#0d0d0d] border border-[#1a1a1a] border-t-2 border-t-orange-500 rounded-[16px] p-8 md:p-10 relative overflow-hidden group hover:border-[#2a2a2a] hover:border-t-orange-500 hover:-translate-y-1.5 transition-all duration-400 shadow-2xl"
+            >
+              <div className="absolute top-0 left-0 w-32 h-32 bg-orange-500/5 blur-[60px] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
+
+              <div className="relative z-10 flex flex-col h-full justify-between gap-12">
+                <div>
+                  <Server size={32} className="text-orange-500 mb-6" />
+                  <h3 className="text-[18px] font-bold text-white tracking-[0.1em] uppercase">Backend Systems</h3>
+                </div>
+
+                <div className="flex flex-wrap gap-x-8 gap-y-6">
+                  {[
+                    { icon: Hexagon, name: "Node.js" },
+                    { icon: Database, name: "PostgreSQL" },
+                    { icon: Leaf, name: "MongoDB" },
+                    { icon: Flame, name: "Firebase" },
+                    { icon: Network, name: "REST APIs" }
+                  ].map((tech, i) => (
+                    <motion.div 
+                      key={tech.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.5 + (i * 0.08) }}
+                      className="flex flex-col items-center gap-3 cursor-pointer group/logo"
+                    >
+                      <div className="text-white/20 group-hover/logo:text-white group-hover/logo:scale-110 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                        <tech.icon size={32} strokeWidth={1.5} className="group-hover/logo:text-orange-500 transition-colors duration-400" />
+                      </div>
+                      <span className="text-[10px] uppercase font-bold text-[#555] tracking-[0.05em] group-hover/logo:text-orange-500 transition-colors duration-400">
+                        {tech.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+
+            {/* UI/UX CARD */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.24, ease: [0.16,1,0.3,1] }}
+              className="lg:col-span-1 bg-[#0d0d0d] border border-[#1a1a1a] border-t-2 border-t-orange-500 rounded-[16px] p-8 md:p-10 relative overflow-hidden group hover:border-[#2a2a2a] hover:border-t-orange-500 hover:-translate-y-1.5 transition-all duration-400 shadow-2xl"
+            >
+              <div className="absolute top-0 left-0 w-32 h-32 bg-orange-500/5 blur-[60px] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
+
+              <div className="relative z-10 flex flex-col h-full justify-between gap-12">
+                <div>
+                  <PenTool size={32} className="text-orange-500 mb-6" />
+                  <h3 className="text-[18px] font-bold text-white tracking-[0.1em] uppercase">UI/UX Design</h3>
+                </div>
+
+                <div className="flex flex-wrap gap-x-8 gap-y-6">
+                  {[
+                    { icon: FigmaIcon, name: "Figma" },
+                    { icon: LayoutTemplate, name: "Framer" },
+                    { icon: Box, name: "Spline" }
+                  ].map((tech, i) => (
+                    <motion.div 
+                      key={tech.name}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.6 + (i * 0.08) }}
+                      className="flex flex-col items-center gap-3 cursor-pointer group/logo"
+                    >
+                      <div className="text-white/20 group-hover/logo:text-white group-hover/logo:scale-110 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                        <tech.icon size={32} strokeWidth={1.5} className="group-hover/logo:text-orange-500 transition-colors duration-400" />
+                      </div>
+                      <span className="text-[10px] uppercase font-bold text-[#555] tracking-[0.05em] group-hover/logo:text-orange-500 transition-colors duration-400">
+                        {tech.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* TOOLS BANNER */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.36, ease: [0.16,1,0.3,1] }}
+              className="lg:col-span-2 mt-4 border-t border-[#1a1a1a] pt-6 flex flex-col md:flex-row md:items-center justify-between gap-6"
+            >
+              <h3 className="text-[18px] font-bold text-white tracking-[0.1em] uppercase">Tools & DevOps</h3>
+              
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { icon: GitBranch, name: "Git Systems" },
+                  { icon: Box, name: "Docker" },
+                  { icon: Cloud, name: "AWS Edge" },
+                  { icon: Triangle, name: "Vercel" },
+                  { icon: RefreshCw, name: "CI/CD" }
+                ].map((tech, i) => (
+                  <motion.div 
+                    key={tech.name}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.7 + (i * 0.05) }}
+                    className="flex items-center gap-2 bg-[#161616] px-[12px] py-[6px] rounded-[6px] border border-[#222] hover:border-orange-500/40 hover:bg-[#1a1a1a] transition-all cursor-pointer group/pill"
+                  >
+                    <tech.icon size={14} className="text-[#666] group-hover/pill:text-orange-500 transition-colors duration-400" />
+                    <span className="text-[12px] text-[#888] font-medium tracking-wide group-hover/pill:text-white transition-colors duration-400">{tech.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+          </div>{/* End Grid */}
         </div>
       </section>
       </StickySlide>
