@@ -407,8 +407,51 @@ export default function App() {
       <section id="skills" className="min-h-screen py-32 px-6 md:px-12 lg:px-16 flex flex-col justify-center relative border-t border-white/10 overflow-hidden bg-[#0a0a0a]">
         
         {/* Subtle radial glow and noise */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
         <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay z-10 pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
+
+        {/* Floating Background Skill Icons */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{ y: [0, -20, 0], x: [0, 10, 0], rotate: [0, 5, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-32 left-[5%] md:left-[10%] text-orange-500/5"
+          >
+            <Atom size={120} strokeWidth={1} />
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [0, 25, 0], x: [0, -15, 0], rotate: [0, -10, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute top-64 right-[5%] md:right-[10%] text-white/5"
+          >
+            <Server size={180} strokeWidth={1} />
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [0, -30, 0], rotate: [0, 15, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute bottom-40 left-[5%] md:left-[8%] text-white/5"
+          >
+            <FigmaIcon size={140} strokeWidth={1} />
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [0, 20, 0], x: [0, 20, 0], rotate: [0, -5, 0] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="absolute bottom-32 right-[5%] md:right-[8%] text-orange-500/5"
+          >
+            <Database size={160} strokeWidth={1} />
+          </motion.div>
+
+          <motion.div
+            animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            className="absolute top-40 left-1/2 -translate-x-1/2 text-white/5"
+          >
+            <Box size={240} strokeWidth={0.5} />
+          </motion.div>
+        </div>
 
         <div className="max-w-6xl mx-auto w-full relative z-20">
           
