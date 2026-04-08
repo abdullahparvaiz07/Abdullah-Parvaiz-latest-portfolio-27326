@@ -292,18 +292,18 @@ export default function App() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="relative w-[300px] md:w-[350px] aspect-[3/4] sm:aspect-square md:aspect-[3/4] rounded-sm overflow-hidden"
+              className="relative w-[300px] md:w-[350px] aspect-[3/4] sm:aspect-square md:aspect-[3/4] rounded-sm overflow-hidden group cursor-pointer"
             >
               {/* Subtle orange glowing border ring */}
-              <div className="absolute inset-0 border border-orange-500/30 rounded-sm shadow-[0_0_30px_rgba(249,115,22,0.15)] z-20 pointer-events-none"></div>
+              <div className="absolute inset-0 border border-orange-500/30 rounded-sm shadow-[0_0_30px_rgba(249,115,22,0.15)] z-20 pointer-events-none group-hover:border-orange-500/60 transition-colors duration-500"></div>
               
               {/* Noise overlay */}
-              <div className="absolute inset-0 opacity-20 mix-blend-overlay z-10 pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
+              <div className="absolute inset-0 opacity-20 mix-blend-overlay z-10 pointer-events-none group-hover:opacity-0 transition-opacity duration-500" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
 
               <img 
                 src="/mine.jpg" 
                 alt="Abdullah Parvaiz" 
-                className="w-full h-full object-cover grayscale brightness-90 contrast-125"
+                className="w-full h-full object-cover grayscale brightness-90 contrast-125 group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100 transition-all duration-700 transform group-hover:scale-105 origin-center"
                 referrerPolicy="no-referrer"
               />
             </motion.div>
