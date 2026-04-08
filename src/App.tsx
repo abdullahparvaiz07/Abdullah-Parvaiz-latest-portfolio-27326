@@ -313,7 +313,7 @@ export default function App() {
               <div className="flex items-center gap-6 mb-8">
                 <div className="relative w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-full overflow-hidden border-2 border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0.3)]">
                   <img 
-                    src="https://picsum.photos/seed/abdullah/400/400" 
+                    src="/mine.jpg" 
                     alt="Abdullah Parvaiz" 
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
@@ -357,74 +357,81 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
               <p className="text-xl text-white/80 leading-relaxed mb-6 font-medium">
-                I am a Senior Creative Developer & UI/UX Engineer specializing in high-end digital experiences.
+                I am a Creative Developer & UI/UX Engineer specializing in high-end digital experiences.
               </p>
               <p className="text-lg text-white/60 leading-relaxed mb-10">
                 I bridge the gap between stunning visual design and robust, scalable architecture. My approach treats code as a medium for crafting seamless, zero-latency interfaces that don't just work—they perform at the highest level.
               </p>
               
               <div className="flex flex-wrap gap-4 mt-8">
-                <button className="lets-talk-btn" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-                  <span>Lets's Talk</span>
+                <button className="Btn-Container" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <span className="text">Let's Talk!</span>
+                  <span className="icon-Container">
+                    <svg
+                      width="16"
+                      height="19"
+                      viewBox="0 0 16 19"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="1.61321" cy="1.61321" r="1.5" fill="black"></circle>
+                      <circle cx="5.73583" cy="1.61321" r="1.5" fill="black"></circle>
+                      <circle cx="5.73583" cy="5.5566" r="1.5" fill="black"></circle>
+                      <circle cx="9.85851" cy="5.5566" r="1.5" fill="black"></circle>
+                      <circle cx="9.85851" cy="9.5" r="1.5" fill="black"></circle>
+                      <circle cx="13.9811" cy="9.5" r="1.5" fill="black"></circle>
+                      <circle cx="5.73583" cy="13.4434" r="1.5" fill="black"></circle>
+                      <circle cx="9.85851" cy="13.4434" r="1.5" fill="black"></circle>
+                      <circle cx="1.61321" cy="17.3868" r="1.5" fill="black"></circle>
+                      <circle cx="5.73583" cy="17.3868" r="1.5" fill="black"></circle>
+                    </svg>
+                  </span>
                 </button>
               </div>
             </motion.div>
           </div>
 
-          {/* Right Content - Bento Grid */}
-          <div className="lg:col-span-7 grid grid-cols-2 gap-4 h-[500px] md:h-[600px]">
-            {/* Large Card */}
+          {/* Right Content - User Image */}
+          <div className="lg:col-span-7 flex justify-center lg:justify-end items-center relative mt-12 lg:mt-0">
+            {/* Background glowing blob */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              animate={{ 
+                scale: [1, 1.1, 1],
+                rotate: [0, 90, 0]
+              }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              className="absolute w-full max-w-md h-[500px] bg-orange-500/20 rounded-full blur-[100px] -z-10"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: -2 }}
+              whileHover={{ scale: 1.02, rotate: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="col-span-2 relative rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/40 backdrop-blur-sm group p-8 flex flex-col justify-between"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative w-full max-w-sm lg:max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(249,115,22,0.15)] group"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute -right-20 -top-20 w-64 h-64 bg-orange-500/20 rounded-full blur-[80px] group-hover:bg-orange-500/30 transition-colors duration-500"></div>
+              {/* Image Overlay to make it blend well with dark theme */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-orange-500/20 z-10 group-hover:bg-transparent transition-colors duration-700 pointer-events-none"></div>
               
-              <div className="relative z-10">
-                <Code2 className="text-orange-500 mb-6" size={40} strokeWidth={1.5} />
-                <h3 className="text-3xl font-bold uppercase tracking-wide mb-2">Frontend Engineering</h3>
-                <p className="text-white/60 max-w-md">Pixel-perfect implementation with complex animations, WebGL, and state-of-the-art framework architectures.</p>
-              </div>
+              <img 
+                src="/mine.jpg" 
+                alt="Abdullah Parvaiz" 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                referrerPolicy="no-referrer"
+              />
               
-              <div className="relative z-10 flex flex-wrap gap-2 mt-8">
-                {['React', 'Next.js', 'Three.js', 'Tailwind', 'Framer Motion'].map((tech) => (
-                  <span key={tech} className="text-xs font-bold tracking-widest uppercase px-3 py-1 bg-black/50 border border-white/10 rounded-full text-white/70">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Small Card 1 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="relative rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/40 backdrop-blur-sm group p-8 flex flex-col justify-center items-center text-center"
-            >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:16px_16px] opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <Layers className="text-white/80 mb-4 relative z-10 group-hover:scale-110 transition-transform duration-500 group-hover:text-white" size={32} strokeWidth={1.5} />
-              <h3 className="text-xl font-bold uppercase tracking-wide relative z-10">UI/UX Design</h3>
-              <p className="text-white/50 text-sm mt-2 relative z-10">Figma to Code</p>
-            </motion.div>
-
-            {/* Small Card 2 - Accent */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-              className="relative rounded-3xl overflow-hidden border border-orange-500/30 bg-orange-500/5 backdrop-blur-sm group p-8 flex flex-col justify-center items-center text-center"
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <Cpu className="text-orange-400 mb-4 relative z-10 group-hover:rotate-12 transition-transform duration-500" size={32} strokeWidth={1.5} />
-              <h3 className="text-xl font-bold uppercase tracking-wide relative z-10 text-orange-50">Backend Systems</h3>
-              <p className="text-orange-200/60 text-sm mt-2 relative z-10">Node, SQL, NoSQL</p>
+              {/* Floating Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="absolute bottom-6 md:bottom-8 right-6 md:right-8 z-20 bg-white/5 backdrop-blur-xl border border-white/20 px-5 md:px-6 py-2.5 md:py-3 rounded-full flex items-center gap-3 shadow-xl"
+              >
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse border border-green-300"></div>
+                <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-white">Available for work</span>
+              </motion.div>
             </motion.div>
           </div>
         </div>
