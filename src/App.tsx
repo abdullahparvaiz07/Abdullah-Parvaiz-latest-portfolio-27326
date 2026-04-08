@@ -110,6 +110,13 @@ export default function App() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
           >
+            <div className="absolute top-6 md:top-12 lg:top-16 left-0 right-0 px-6 md:px-12 lg:px-16 w-full pointer-events-none">
+              <div className="flex flex-col md:flex-row justify-between items-center w-full gap-6 md:gap-0">
+                <div className="md:flex-1 flex items-center justify-center md:justify-start w-full md:w-auto">
+                  <img src="/logo.png" alt="Abdullah Parvaiz Logo" className="h-12 md:h-16 w-auto invert" />
+                </div>
+              </div>
+            </div>
             <div className="loader-wrapper">
               <span className="loader-letter">l</span>
               <span className="loader-letter">o</span>
@@ -195,7 +202,7 @@ export default function App() {
               PARVAIZ
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-md opacity-90 font-medium hover:text-orange-400 transition-colors duration-300">
-              Engineered with high-end code and a zero-latency stack for those who don't just build the future—they ship it. Shift your reality.
+              Crafting high-performance applications with clean code and modern stacks. Turning ideas into interactive reality.
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <button className="btn-53" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
