@@ -146,10 +146,8 @@ export default function App() {
         <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
           <Hero3D />
           {/* Dark gradient overlays to ensure text remains readable and fade edges */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/20 w-full lg:w-[80%]"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/100"></div>
-          {/* Subtle noise pattern for professional texture */}
-          <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/70 to-black/100"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,black_90%)]"></div>
         </div>
 
         {/* Top Bar */}
@@ -199,11 +197,11 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="lg:col-span-7 flex flex-col justify-center"
           >
-            <h1 className="text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-black uppercase leading-[0.85] tracking-[-0.03em] mb-8 drop-shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-              <span className="text-white hover:text-zinc-200 transition-colors duration-300">ABDULLAH</span> <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-300 hover:to-orange-500 transition-all duration-300">PARVAIZ</span>
+            <h1 className="text-[3.5rem] sm:text-[5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-bold uppercase leading-[0.85] tracking-[-0.02em] mb-8 hover:text-orange-400 transition-colors duration-300">
+              ABDULLAH <br/>
+              PARVAIZ
             </h1>
-            <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-md text-zinc-300 font-medium drop-shadow-md">
+            <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-md opacity-90 font-medium hover:text-orange-400 transition-colors duration-300">
               Crafting high-performance applications with clean code and modern stacks. Turning ideas into interactive reality.
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -268,12 +266,14 @@ export default function App() {
           className="mt-20 lg:mt-auto flex flex-col lg:flex-row justify-end items-end gap-12 relative z-10"
         >
           {/* Tags */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-end text-xs font-semibold tracking-widest uppercase shrink-0 text-white/90 drop-shadow-md">
-            <div className="px-4 py-2 border border-white/20 bg-black/40 backdrop-blur-sm rounded-full">Let's</div>
-            <div className="w-4 h-[1px] bg-white/30 hidden sm:block"></div>
-            <div className="px-4 py-2 border border-white/20 bg-black/40 backdrop-blur-sm rounded-full mt-4 sm:mt-0">Build</div>
-            <div className="w-4 h-[1px] bg-white/30 hidden sm:block"></div>
-            <div className="px-4 py-2 border border-orange-500/30 bg-orange-500/10 text-orange-400 backdrop-blur-sm rounded-full mt-4 sm:mt-0">Together</div>
+          <div className="flex flex-wrap items-center justify-center lg:justify-end text-xs font-medium tracking-widest uppercase shrink-0">
+            <div className="px-4 py-2 border border-white/40 rounded-full">Let's</div>
+            <div className="w-4 h-[1px] bg-white/40 hidden sm:block"></div>
+            <div className="px-3 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">we</div>
+            <div className="w-4 h-[1px] bg-white/40 hidden sm:block"></div>
+            <div className="px-4 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">Build</div>
+            <div className="w-4 h-[1px] bg-white/40 hidden sm:block"></div>
+            <div className="px-4 py-2 border border-white/40 rounded-full mt-4 sm:mt-0">Together</div>
           </div>
         </motion.div>
       </section>
