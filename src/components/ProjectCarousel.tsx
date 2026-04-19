@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useAnimation } from "motion/react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { motion, useInView } from "motion/react";
+import { ArrowRight, ExternalLink, ArrowLeft } from "lucide-react";
 
 interface Project {
   id: number;
@@ -8,177 +8,344 @@ interface Project {
   description: string;
   tag: string;
   link?: string;
+  image?: string;
 }
 
 interface ProjectCarouselProps {
   projects: Project[];
 }
 
-export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+/* ─── per-card tilt / magnetic / parallax controller ─── */
+function useCardInteraction(cardRef: React.RefObject<HTMLDivElement | null>) {
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+  const [magnetic, setMagnetic] = useState({ x: 0, y: 0 });
+  const [parallax, setParallax] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const rafRef = useRef<number>(0);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const px = (e.clientX - rect.left) / rect.width;   // 0 → 1
+    const py = (e.clientY - rect.top) / rect.height;
+
+    cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      // 3‌D tilt  (max ±14°)
+      setTilt({
+        rotateX: (0.5 - py) * 28,
+        rotateY: (px - 0.5) * 28,
+      });
+      // magnetic drift  (max ±8 px)
+      setMagnetic({
+        x: (e.clientX - cx) * 0.04,
+        y: (e.clientY - cy) * 0.04,
+      });
+      // parallax for inner layers
+      setParallax({
+        x: (px - 0.5) * 30,
+        y: (py - 0.5) * 30,
+      });
+    });
+  }, [cardRef]);
+
+  const handleMouseEnter = useCallback(() => setIsHovering(true), []);
+  const handleMouseLeave = useCallback(() => {
+    setIsHovering(false);
+    setTilt({ rotateX: 0, rotateY: 0 });
+    setMagnetic({ x: 0, y: 0 });
+    setParallax({ x: 0, y: 0 });
+  }, []);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    el.addEventListener("mousemove", handleMouseMove, { passive: true });
+    el.addEventListener("mouseenter", handleMouseEnter);
+    el.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      el.removeEventListener("mousemove", handleMouseMove);
+      el.removeEventListener("mouseenter", handleMouseEnter);
+      el.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, [cardRef, handleMouseMove, handleMouseEnter, handleMouseLeave]);
+
+  return { tilt, magnetic, parallax, isHovering };
+}
+
+/* ─── single project card ─── */
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { tilt, magnetic, parallax, isHovering } = useCardInteraction(cardRef);
+  const inViewRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(inViewRef, { once: true, margin: "-80px" });
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
   }, []);
 
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
-  };
-
-  const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-  };
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setCurrentIndex((prevIndex) => (prevIndex + newDirection + projects.length) % projects.length);
-  };
-
-  if (!isMobile) {
-    return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: (index % 2) * 0.2 }}
-            className="group relative h-[400px] rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/30 hover:border-orange-500/50 transition-colors"
-          >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
-            <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity duration-500 group-hover:scale-105 transform">
-              <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-            </div>
-            <div className="absolute bottom-0 left-0 w-full p-8 z-20">
-              <div className="flex justify-between items-end">
-                <div>
-                  <div className="text-orange-500 text-sm font-bold tracking-widest mb-2">{project.tag}</div>
-                  <h3 className="text-2xl font-bold uppercase tracking-wide mb-2">{project.title}</h3>
-                  <p className="text-white/60 text-sm max-w-sm">
-                    {project.description}
-                  </p>
-                </div>
-                {project.link ? (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-orange-500 group-hover:text-black transition-all cursor-pointer text-white">
-                    <ArrowRight size={20} />
-                  </a>
-                ) : (
-                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:bg-orange-500 group-hover:text-black transition-all cursor-pointer">
-                    <ArrowRight size={20} />
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    );
-  }
+  const cardTransform = isMobile
+    ? "none"
+    : `translate3d(${magnetic.x}px, ${magnetic.y}px, 0) perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`;
 
   return (
-    <div className="relative w-full h-[500px] overflow-hidden px-4">
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={currentIndex}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
+    <motion.div
+      ref={inViewRef}
+      initial={{ opacity: 0, y: 80, scale: 0.95 }}
+      animate={
+        isInView
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 80, scale: 0.95 }
+      }
+      transition={{
+        duration: 0.85,
+        delay: index * 0.18,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="sw-card-wrapper"
+    >
+      <div
+        ref={cardRef}
+        className={`sw-card ${isHovering ? "sw-card--hovered" : ""}`}
+        style={{
+          transform: cardTransform,
+          willChange: "transform",
+        }}
+      >
+        {/* ── ambient neon glow (always-on, intensifies on hover) ── */}
+        <div className="sw-card__glow" />
 
-            if (swipe < -swipeConfidenceThreshold) {
-              paginate(1);
-            } else if (swipe > swipeConfidenceThreshold) {
-              paginate(-1);
+        {/* ── glass surface ── */}
+        <div className="sw-card__glass">
+          {/* noise + grid overlays */}
+          <div className="sw-card__noise" />
+          <div className="sw-card__grid" />
+
+          {/* top accent bar */}
+          <div className="sw-card__accent" />
+
+          {/* ── project image ── */}
+          <div
+            className="sw-card__img-wrap"
+            style={
+              !isMobile
+                ? {
+                    transform: `translate3d(${parallax.x * -0.4}px, ${parallax.y * -0.4}px, 0) scale(${isHovering ? 1.08 : 1})`,
+                  }
+                : undefined
             }
-          }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="w-full h-[400px] rounded-3xl overflow-hidden border border-white/10 bg-zinc-900/30 relative">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
-            <div className="absolute inset-0 flex items-center justify-center opacity-20">
-              <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-            </div>
-            <div className="absolute bottom-0 left-0 w-full p-8 z-20">
-              <div className="flex flex-col gap-4">
-                <div>
-                  <div className="text-orange-500 text-sm font-bold tracking-widest mb-2">{projects[currentIndex].tag}</div>
-                  <h3 className="text-2xl font-bold uppercase tracking-wide mb-2">{projects[currentIndex].title}</h3>
-                  <p className="text-white/60 text-sm">
-                    {projects[currentIndex].description}
-                  </p>
-                </div>
-                <div className="flex items-center gap-4 mt-4">
-                  <button 
-                    onClick={() => paginate(-1)}
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all shrink-0"
-                  >
-                    <ArrowLeft size={20} />
-                  </button>
-                  {projects[currentIndex].link && (
-                    <a href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer" className="flex-1 h-12 rounded-full sm:text-sm text-xs bg-orange-500/10 text-orange-500 font-bold tracking-widest uppercase flex items-center justify-center border border-orange-500/30 hover:bg-orange-500 hover:text-black transition-all">
-                       Visit Site
-                    </a>
-                  )}
-                  <button 
-                    onClick={() => paginate(1)}
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-orange-500 hover:text-black transition-all shrink-0"
-                  >
-                    <ArrowRight size={20} />
-                  </button>
-                </div>
-              </div>
-            </div>
+          >
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                className="sw-card__img"
+                loading="lazy"
+              />
+            ) : (
+              <div className="sw-card__img-placeholder" />
+            )}
+            {/* hue shift overlay on hover */}
+            <div className="sw-card__img-overlay" />
           </div>
-        </motion.div>
-      </AnimatePresence>
 
-      {/* Dots */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-        {projects.map((_, index) => (
+          {/* gradient scrim over image */}
+          <div className="sw-card__scrim" />
+
+          {/* ── content layer (parallax deeper) ── */}
+          <div
+            className="sw-card__content"
+            style={
+              !isMobile
+                ? {
+                    transform: `translate3d(${parallax.x * 0.5}px, ${parallax.y * 0.35}px, 40px)`,
+                  }
+                : undefined
+            }
+          >
+            {/* tag chip */}
+            <div
+              className="sw-card__tag"
+              style={
+                !isMobile
+                  ? {
+                      transform: `translate3d(${parallax.x * 0.7}px, ${parallax.y * 0.5}px, 60px)`,
+                    }
+                  : undefined
+              }
+            >
+              {project.tag}
+            </div>
+
+            {/* title (shallowest parallax → feels closest) */}
+            <h3
+              className="sw-card__title"
+              style={
+                !isMobile
+                  ? {
+                      transform: `translate3d(${parallax.x * 0.25}px, ${parallax.y * 0.2}px, 20px)`,
+                    }
+                  : undefined
+              }
+            >
+              {project.title}
+            </h3>
+
+            {/* description */}
+            <p className="sw-card__desc">{project.description}</p>
+
+            {/* CTA */}
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sw-card__cta"
+              >
+                <span className="sw-card__cta-text">View Project</span>
+                <span className="sw-card__cta-icon">
+                  <ExternalLink size={15} />
+                </span>
+                <span className="sw-card__cta-fill" />
+              </a>
+            )}
+          </div>
+
+          {/* project number watermark */}
+          <div
+            className="sw-card__number"
+            style={
+              !isMobile
+                ? {
+                    transform: `translate3d(${parallax.x * -0.15}px, ${parallax.y * -0.15}px, -10px)`,
+                  }
+                : undefined
+            }
+          >
+            {String(project.id).padStart(2, "0")}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─── mobile swipe carousel ─── */
+function MobileCarousel({ projects }: { projects: Project[] }) {
+  const [current, setCurrent] = useState(0);
+  const [dir, setDir] = useState(0);
+
+  const paginate = (d: number) => {
+    setDir(d);
+    setCurrent((p) => (p + d + projects.length) % projects.length);
+  };
+
+  const project = projects[current];
+
+  return (
+    <div className="sw-mobile">
+      <div className="sw-mobile__card">
+        {/* image */}
+        <div className="sw-mobile__img-wrap">
+          {project.image ? (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="sw-mobile__img"
+            />
+          ) : (
+            <div className="sw-mobile__img-placeholder" />
+          )}
+          <div className="sw-mobile__scrim" />
+        </div>
+
+        {/* content */}
+        <div className="sw-mobile__content">
+          <div className="sw-card__tag">{project.tag}</div>
+          <h3 className="sw-mobile__title">{project.title}</h3>
+          <p className="sw-mobile__desc">{project.description}</p>
+
+          <div className="sw-mobile__actions">
+            <button
+              onClick={() => paginate(-1)}
+              className="sw-mobile__nav-btn"
+              aria-label="Previous"
+            >
+              <ArrowLeft size={18} />
+            </button>
+
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sw-mobile__visit"
+              >
+                Visit Site
+              </a>
+            )}
+
+            <button
+              onClick={() => paginate(1)}
+              className="sw-mobile__nav-btn"
+              aria-label="Next"
+            >
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* dots */}
+      <div className="sw-mobile__dots">
+        {projects.map((_, i) => (
           <button
-            key={index}
+            key={i}
             onClick={() => {
-              setDirection(index > currentIndex ? 1 : -1);
-              setCurrentIndex(index);
+              setDir(i > current ? 1 : -1);
+              setCurrent(i);
             }}
-            className={`w-2 h-2 rounded-full transition-all ${
-              index === currentIndex ? "bg-orange-500 w-6" : "bg-white/20"
-            }`}
+            className={`sw-mobile__dot ${i === current ? "sw-mobile__dot--active" : ""}`}
+            aria-label={`Go to project ${i + 1}`}
           />
         ))}
       </div>
+    </div>
+  );
+}
+
+/* ─── main export ─── */
+export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  if (isMobile) return <MobileCarousel projects={projects} />;
+
+  return (
+    <div className="sw-grid">
+      {projects.map((project, index) => (
+        <ProjectCard key={project.id} project={project} index={index} />
+      ))}
     </div>
   );
 }

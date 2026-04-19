@@ -22,21 +22,24 @@ const projects = [
     title: "PortFolyn",
     description: "A professional CV & portfolio builder featuring advanced templates, dynamic data integration, and seamless export for creative professionals.",
     tag: "01 // SAAS",
-    link: "https://portfolyn-one.vercel.app/"
+    link: "https://portfolyn-one.vercel.app/",
+    image: "/portfolyn_preview.png"
   },
   {
     id: 2,
     title: "Subledge",
     description: "An intuitive subscription manager that helps you track expenses, optimize billing cycles, and prevent unwanted renewals and charges.",
     tag: "02 // WEB APP",
-    link: "https://abdullahparvaiz07.github.io/Subledge/"
+    link: "https://abdullahparvaiz07.github.io/Subledge/",
+    image: "/subledge_preview.png"
   },
   {
     id: 3,
     title: "FitNexa AI",
     description: "An AI-powered fitness application designed to analyze workout routines, recommend tailored exercises, and help users train smarter.",
     tag: "03 // AI PLATFORM",
-    link: "https://fit-nexa-ai.vercel.app/"
+    link: "https://fit-nexa-ai.vercel.app/",
+    image: "/fitnexa_preview.png"
   }
 ];
 
