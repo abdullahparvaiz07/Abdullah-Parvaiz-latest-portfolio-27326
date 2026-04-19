@@ -22,24 +22,21 @@ const projects = [
     title: "PortFolyn",
     description: "A professional CV & portfolio builder featuring advanced templates, dynamic data integration, and seamless export for creative professionals.",
     tag: "01 // SAAS",
-    link: "https://portfolyn-one.vercel.app/",
-    image: "/portfolyn_preview.png"
+    link: "https://portfolyn-one.vercel.app/"
   },
   {
     id: 2,
     title: "Subledge",
     description: "An intuitive subscription manager that helps you track expenses, optimize billing cycles, and prevent unwanted renewals and charges.",
     tag: "02 // WEB APP",
-    link: "https://abdullahparvaiz07.github.io/Subledge/",
-    image: "/subledge_preview.png"
+    link: "https://abdullahparvaiz07.github.io/Subledge/"
   },
   {
     id: 3,
     title: "FitNexa AI",
     description: "An AI-powered fitness application designed to analyze workout routines, recommend tailored exercises, and help users train smarter.",
     tag: "03 // AI PLATFORM",
-    link: "https://fit-nexa-ai.vercel.app/",
-    image: "/fitnexa_preview.png"
+    link: "https://fit-nexa-ai.vercel.app/"
   }
 ];
 
@@ -465,180 +462,80 @@ export default function App() {
             </motion.p>
           </div>
 
-          {/* Cards Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Premium Skills Layout with Icon Cloud */}
+          <div className="relative flex flex-col lg:flex-row items-center gap-16 mt-12 bg-[#080808]/80 backdrop-blur-xl border border-white/5 rounded-[40px] p-8 md:p-16 overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] group">
+            
+            {/* Background Cinematic Effects */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/10 blur-[150px] rounded-full pointer-events-none group-hover:bg-orange-500/20 transition-colors duration-1000"></div>
+            <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-700/5 blur-[120px] rounded-full pointer-events-none"></div>
+            <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, rgba(255,255,255,1) 1px, transparent 0)", backgroundSize: "32px 32px" }}></div>
 
-            {/* FRONTEND HERO CARD */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            {/* Left: Interactive Icon Cloud */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16,1,0.3,1] }}
-              className="lg:col-span-2 bg-[#0d0d0d] border border-[#1a1a1a] border-t-2 border-t-orange-500 rounded-[16px] p-8 md:p-10 relative overflow-hidden group hover:border-[#2a2a2a] hover:border-t-orange-500 hover:-translate-y-1.5 transition-all duration-400 shadow-2xl"
+              transition={{ duration: 1.2, ease: [0.16,1,0.3,1] }}
+              className="w-full lg:w-1/2 flex justify-center items-center relative z-10"
             >
-              {/* Subtle top-left glow */}
-              <div className="absolute top-0 left-0 w-48 h-48 bg-orange-500/5 blur-[80px] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
-              {/* Dot grid pattern bg */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1.5px 1.5px, rgba(255,255,255,1) 1px, transparent 0)", backgroundSize: "24px 24px" }}></div>
-
-              <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
-                <div className="max-w-xs">
-                  <Code2 size={32} className="text-orange-500 mb-6" />
-                  <h3 className="text-[22px] font-bold text-white tracking-[0.1em] uppercase mb-3">Frontend<br/>Engineering</h3>
-                  <p className="text-[#555] text-[14px] leading-[1.7]">
-                    Architecting scalable, zero-latency user interfaces with modern reactive paradigms.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-x-8 gap-y-6">
-                  {[
-                    { icon: Atom, name: "React" },
-                    { icon: Triangle, name: "Next.js" },
-                    { icon: Box, name: "Three.js" },
-                    { icon: Wind, name: "Tailwind" },
-                    { icon: LayoutTemplate, name: "Framer" }
-                  ].map((tech, i) => (
-                    <motion.div 
-                      key={tech.name}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.4 + (i * 0.08) }}
-                      className="flex flex-col items-center gap-3 cursor-pointer group/logo"
-                    >
-                      <div className="text-white/20 group-hover/logo:text-white group-hover/logo:scale-110 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <tech.icon size={48} strokeWidth={1.5} className="group-hover/logo:text-orange-500 transition-colors duration-400" />
-                      </div>
-                      <span className="text-[10px] uppercase font-bold text-[#555] tracking-[0.05em] group-hover/logo:text-orange-500 transition-colors duration-400">
-                        {tech.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-
-            {/* BACKEND CARD */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.12, ease: [0.16,1,0.3,1] }}
-              className="lg:col-span-1 bg-[#0d0d0d] border border-[#1a1a1a] border-t-2 border-t-orange-500 rounded-[16px] p-8 md:p-10 relative overflow-hidden group hover:border-[#2a2a2a] hover:border-t-orange-500 hover:-translate-y-1.5 transition-all duration-400 shadow-2xl"
-            >
-              <div className="absolute top-0 left-0 w-32 h-32 bg-orange-500/5 blur-[60px] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
-
-              <div className="relative z-10 flex flex-col h-full justify-between gap-12">
-                <div>
-                  <Server size={32} className="text-orange-500 mb-6" />
-                  <h3 className="text-[18px] font-bold text-white tracking-[0.1em] uppercase">Backend Systems</h3>
-                </div>
-
-                <div className="flex flex-wrap gap-x-8 gap-y-6">
-                  {[
-                    { icon: Hexagon, name: "Node.js" },
-                    { icon: Database, name: "PostgreSQL" },
-                    { icon: Leaf, name: "MongoDB" },
-                    { icon: Flame, name: "Firebase" },
-                    { icon: Network, name: "REST APIs" }
-                  ].map((tech, i) => (
-                    <motion.div 
-                      key={tech.name}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.5 + (i * 0.08) }}
-                      className="flex flex-col items-center gap-3 cursor-pointer group/logo"
-                    >
-                      <div className="text-white/20 group-hover/logo:text-white group-hover/logo:scale-110 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <tech.icon size={32} strokeWidth={1.5} className="group-hover/logo:text-orange-500 transition-colors duration-400" />
-                      </div>
-                      <span className="text-[10px] uppercase font-bold text-[#555] tracking-[0.05em] group-hover/logo:text-orange-500 transition-colors duration-400">
-                        {tech.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-
-            {/* UI/UX CARD */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.24, ease: [0.16,1,0.3,1] }}
-              className="lg:col-span-1 bg-[#0d0d0d] border border-[#1a1a1a] border-t-2 border-t-orange-500 rounded-[16px] p-8 md:p-10 relative overflow-hidden group hover:border-[#2a2a2a] hover:border-t-orange-500 hover:-translate-y-1.5 transition-all duration-400 shadow-2xl"
-            >
-              <div className="absolute top-0 left-0 w-32 h-32 bg-orange-500/5 blur-[60px] opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"></div>
-
-              <div className="relative z-10 flex flex-col h-full justify-between gap-12">
-                <div>
-                  <PenTool size={32} className="text-orange-500 mb-6" />
-                  <h3 className="text-[18px] font-bold text-white tracking-[0.1em] uppercase">UI/UX Design</h3>
-                </div>
-
-                <div className="flex flex-wrap gap-x-8 gap-y-6">
-                  {[
-                    { icon: FigmaIcon, name: "Figma" },
-                    { icon: LayoutTemplate, name: "Framer" },
-                    { icon: Box, name: "Spline" }
-                  ].map((tech, i) => (
-                    <motion.div 
-                      key={tech.name}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.6 + (i * 0.08) }}
-                      className="flex flex-col items-center gap-3 cursor-pointer group/logo"
-                    >
-                      <div className="text-white/20 group-hover/logo:text-white group-hover/logo:scale-110 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                        <tech.icon size={32} strokeWidth={1.5} className="group-hover/logo:text-orange-500 transition-colors duration-400" />
-                      </div>
-                      <span className="text-[10px] uppercase font-bold text-[#555] tracking-[0.05em] group-hover/logo:text-orange-500 transition-colors duration-400">
-                        {tech.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* TOOLS BANNER */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.36, ease: [0.16,1,0.3,1] }}
-              className="lg:col-span-2 mt-4 border-t border-[#1a1a1a] pt-6 flex flex-col md:flex-row md:items-center justify-between gap-6"
-            >
-              <h3 className="text-[18px] font-bold text-white tracking-[0.1em] uppercase">Tools & DevOps</h3>
+              {/* Dynamic Rings */}
+              <div className="absolute inset-0 rounded-full border border-white/5 scale-[0.6] z-0 animate-[spin_40s_linear_infinite]"></div>
+              <div className="absolute inset-0 rounded-full border border-orange-500/10 scale-[0.9] z-0 animate-[spin_60s_linear_infinite_reverse]"></div>
               
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { icon: GitBranch, name: "Git Systems" },
-                  { icon: Box, name: "Docker" },
-                  { icon: Cloud, name: "AWS Edge" },
-                  { icon: Triangle, name: "Vercel" },
-                  { icon: RefreshCw, name: "CI/CD" }
-                ].map((tech, i) => (
-                  <motion.div 
-                    key={tech.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.7 + (i * 0.05) }}
-                    className="flex items-center gap-2 bg-[#161616] px-[12px] py-[6px] rounded-[6px] border border-[#222] hover:border-orange-500/40 hover:bg-[#1a1a1a] transition-all cursor-pointer group/pill"
-                  >
-                    <tech.icon size={14} className="text-[#666] group-hover/pill:text-orange-500 transition-colors duration-400" />
-                    <span className="text-[12px] text-[#888] font-medium tracking-wide group-hover/pill:text-white transition-colors duration-400">{tech.name}</span>
-                  </motion.div>
-                ))}
+              <div className="scale-[1.15] md:scale-125 lg:scale-150 relative z-10 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.15)] mix-blend-screen mix-blend-plus-lighter">
+                <IconCloudDemo />
               </div>
             </motion.div>
 
+            {/* Right: Expertise Domains */}
+            <div className="w-full lg:w-1/2 flex flex-col gap-12 relative z-10">
+              
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.2, ease: [0.16,1,0.3,1] }}
+                className="group/domain cursor-default relative"
+              >
+                <div className="text-orange-500/80 text-[11px] font-bold tracking-[0.2em] uppercase mb-3 group-hover/domain:text-orange-500 transition-colors duration-400">01 // Frontend Engineering</div>
+                <h3 className="text-[32px] md:text-[40px] font-bold text-white mb-4 leading-tight tracking-tight">Crafting Zero-Latency Interfaces</h3>
+                <p className="text-[#777] leading-[1.8] text-[15px] max-w-md group-hover/domain:text-[#aaa] transition-colors duration-400">
+                  Utilizing modern architectures like React, Next.js, and Framer Motion to build deeply interactive, highly performant client-side experiences. Every pixel breathes.
+                </p>
+                <div className="w-full h-[1px] bg-white/5 mt-8 group-hover/domain:bg-gradient-to-r group-hover/domain:from-orange-500 group-hover/domain:to-transparent transition-all duration-700"></div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.35, ease: [0.16,1,0.3,1] }}
+                className="group/domain cursor-default relative"
+              >
+                <div className="text-orange-500/80 text-[11px] font-bold tracking-[0.2em] uppercase mb-3 group-hover/domain:text-orange-500 transition-colors duration-400">02 // Backend Systems</div>
+                <h3 className="text-[32px] md:text-[40px] font-bold text-white mb-4 leading-tight tracking-tight">Scalable Data Architecture</h3>
+                <p className="text-[#777] leading-[1.8] text-[15px] max-w-md group-hover/domain:text-[#aaa] transition-colors duration-400">
+                  Engineering resilient microservices and robust REST/GraphQL APIs with Node.js and PostgreSQL. Designed securely from the ground up to handle intense scale effortlessly.
+                </p>
+                <div className="w-full h-[1px] bg-white/5 mt-8 group-hover/domain:bg-gradient-to-r group-hover/domain:from-orange-500 group-hover/domain:to-transparent transition-all duration-700"></div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.5, ease: [0.16,1,0.3,1] }}
+                className="group/domain cursor-default relative"
+              >
+                <div className="text-orange-500/80 text-[11px] font-bold tracking-[0.2em] uppercase mb-3 group-hover/domain:text-orange-500 transition-colors duration-400">03 // UI/UX Design</div>
+                <h3 className="text-[32px] md:text-[40px] font-bold text-white mb-4 leading-tight tracking-tight">Editorial & Cinematic Aesthetics</h3>
+                <p className="text-[#777] leading-[1.8] text-[15px] max-w-md group-hover/domain:text-[#aaa] transition-colors duration-400">
+                  Prototyping in Figma and Spline to bring high-end editorial layouts and 3D web capabilities to life. Blending brutalist minimalism with magnetic interactivity.
+                </p>
+                <div className="w-full h-[1px] bg-white/5 mt-8 group-hover/domain:bg-gradient-to-r group-hover/domain:from-orange-500 group-hover/domain:to-transparent transition-all duration-700"></div>
+              </motion.div>
+
+            </div>
           </div>{/* End Grid */}
         </div>
       </section>
