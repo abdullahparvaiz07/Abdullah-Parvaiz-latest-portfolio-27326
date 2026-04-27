@@ -8,6 +8,7 @@ import { Hexagon, Scan, Sparkles, Zap, ArrowRight, Github, Linkedin, Mail, Code2
 import Hero3D from "./components/Hero3D";
 import NewsCard from "./components/NewsCard";
 import Macbook from "./components/Macbook";
+import heroVideo from "./Robot_Waves_Hand_for_Website.mp4";
 import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
 import { IconCloudDemo } from "./components/ui/icon-cloud-demo";
 import StickySlide from "./components/StickySlide";
@@ -117,15 +118,8 @@ export default function App() {
                 </div>
               </div>
             </div>
-            <div className="loader-wrapper">
-              <span className="loader-letter">l</span>
-              <span className="loader-letter">o</span>
-              <span className="loader-letter">a</span>
-              <span className="loader-letter">d</span>
-              <span className="loader-letter">i</span>
-              <span className="loader-letter">n</span>
-              <span className="loader-letter">g</span>
-              <div className="loader"></div>
+            <div className="scale-125 md:scale-150">
+              <Macbook />
             </div>
           </motion.div>
         )}
@@ -232,15 +226,27 @@ export default function App() {
             </div>
           </motion.div>
 
-          {/* Right Column (Animation) */}
+          {/* Right Column (Video) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             className="lg:col-span-5 flex flex-col justify-center items-center lg:items-end mt-12 lg:mt-0"
           >
-            <div className="w-full relative pointer-events-none scale-[1.5] sm:scale-[2] lg:scale-[2.5] xl:scale-[3] origin-center lg:origin-right flex justify-center items-center lg:justify-end translate-x-0 lg:-translate-x-12">
-              <Macbook />
+            <div className="w-full max-w-[1000px] relative mix-blend-screen pointer-events-none scale-[1.8] lg:scale-[2.5] origin-center lg:origin-right translate-x-8 lg:translate-x-16">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto object-contain"
+                style={{ 
+                  maskImage: 'linear-gradient(to left, transparent 5%, black 15%)', 
+                  WebkitMaskImage: 'linear-gradient(to left, transparent 5%, black 15%)' 
+                }}
+              >
+                <source src={heroVideo} type="video/mp4" />
+              </video>
             </div>
           </motion.div>
 
