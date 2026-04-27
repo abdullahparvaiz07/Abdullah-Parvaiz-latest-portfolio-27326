@@ -42,6 +42,7 @@ const projects = [
 ];
 
 export default function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(() => {
     const hasLoaded = sessionStorage.getItem("hasLoaded");
     return !hasLoaded;
@@ -149,15 +150,15 @@ export default function App() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col md:flex-row justify-between items-center w-full mb-12 lg:mb-20 relative z-50 gap-6 md:gap-0"
+          className="flex flex-row justify-between items-center w-full mb-12 lg:mb-20 relative z-[95]"
         >
           {/* Logo */}
-          <div className="md:flex-1 flex items-center justify-center md:justify-start w-full md:w-auto">
+          <div className="flex-1 flex items-center justify-start">
             <img src="/logo.png" alt="Abdullah Parvaiz Logo" className="h-12 md:h-16 w-auto invert hover:scale-105 transition-transform duration-300" />
           </div>
 
-          {/* Navigation Links */}
-          <nav className="flex items-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm font-medium tracking-widest uppercase bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 sm:px-8 py-3 sm:py-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium tracking-widest uppercase bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-8 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
             <a href="#about" className="relative group hover:text-orange-400 transition-colors">
               About
               <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-orange-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
@@ -176,10 +177,43 @@ export default function App() {
             </a>
           </nav>
 
-          {/* Empty div to maintain flex layout if needed, or just remove entirely. Let's just remove the button and keep the flex layout balanced by leaving an empty div or removing it. Actually, removing the div might unbalance the flex-between if it relies on 3 elements. Let's keep an empty div to maintain spacing. */}
-          <div className="md:flex-1 flex items-center justify-center md:justify-end w-full md:w-auto">
+          {/* Right Spacer & Mobile Toggle */}
+          <div className="flex-1 flex items-center justify-end">
+            <div className="md:hidden flex items-center relative z-[100]">
+              <input 
+                type="checkbox" 
+                id="checkbox" 
+                checked={isMobileMenuOpen} 
+                onChange={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+              />
+              <label htmlFor="checkbox" className="toggle">
+                <div className="bars" id="bar1"></div>
+                <div className="bars" id="bar2"></div>
+                <div className="bars" id="bar3"></div>
+              </label>
+            </div>
           </div>
         </motion.div>
+
+        {/* Mobile Sidebar */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'tween', duration: 0.3 }}
+              className="fixed inset-0 bg-[#0a0a0a]/95 backdrop-blur-xl z-[90] flex flex-col items-center justify-center md:hidden"
+            >
+              <nav className="flex flex-col items-center gap-10 text-2xl font-bold uppercase tracking-widest text-white">
+                <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">About</a>
+                <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">Projects</a>
+                <a href="#news" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">News</a>
+                <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">Contact</a>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Main Content Grid */}
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
@@ -896,9 +930,9 @@ export default function App() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-24 pt-8 border-t border-white/10 flex flex-col items-center justify-center text-center"
+            className="mt-24 pt-8 pb-8 border-t border-white/10 flex flex-col items-center justify-center text-center w-full px-6 md:px-0"
           >
-            <p className="text-white/50 text-sm uppercase tracking-wider">
+            <p className="text-white/50 text-xs sm:text-sm md:text-base uppercase tracking-wider">
               &copy; 2026 Abdullah Parvaiz rights reserved
             </p>
           </motion.div>
