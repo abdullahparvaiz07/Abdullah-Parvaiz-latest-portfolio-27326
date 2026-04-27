@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import { Hexagon, Scan, Sparkles, Zap, ArrowRight, Github, Linkedin, Mail, Code2, Layers, Cpu, Globe, Server, PenTool, Wrench, Loader2, CheckCircle2, AlertCircle, Send, Download, Atom, Triangle, Box, Wind, LayoutTemplate, Database, Leaf, Flame, Network, RefreshCw, GitBranch, Cloud, Figma as FigmaIcon } from "lucide-react";
 import Hero3D from "./components/Hero3D";
 import NewsCard from "./components/NewsCard";
-import heroVideo from "./Robot_Waves_Hand_for_Website.mp4";
+import Macbook from "./components/Macbook";
 import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
 import { IconCloudDemo } from "./components/ui/icon-cloud-demo";
 import StickySlide from "./components/StickySlide";
@@ -232,27 +232,15 @@ export default function App() {
             </div>
           </motion.div>
 
-          {/* Right Column (Video) */}
+          {/* Right Column (Animation) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             className="lg:col-span-5 flex flex-col justify-center items-center lg:items-end mt-12 lg:mt-0"
           >
-            <div className="w-full max-w-[1000px] relative mix-blend-screen pointer-events-none scale-[1.8] lg:scale-[2.5] origin-center lg:origin-right translate-x-8 lg:translate-x-16">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto object-contain"
-                style={{ 
-                  maskImage: 'linear-gradient(to left, transparent 5%, black 15%)', 
-                  WebkitMaskImage: 'linear-gradient(to left, transparent 5%, black 15%)' 
-                }}
-              >
-                <source src={heroVideo} type="video/mp4" />
-              </video>
+            <div className="w-full relative pointer-events-none scale-[1.5] sm:scale-[2] lg:scale-[2.5] xl:scale-[3] origin-center lg:origin-right flex justify-center items-center lg:justify-end translate-x-0 lg:-translate-x-12">
+              <Macbook />
             </div>
           </motion.div>
 
