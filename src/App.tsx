@@ -93,12 +93,36 @@ export default function App() {
 
     if (isValid) {
       setIsSubmitting(true);
-      // Simulate network request
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: "a84e595c-11cc-4eb6-a5f7-c8e34f37b64f",
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          }),
+        });
+        
+        const result = await response.json();
+        if (result.success) {
+          setSubmitStatus('success');
+          setFormData({ name: "", email: "", message: "" });
+        } else {
+          setSubmitStatus('error');
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        setSubmitStatus('error');
+      } finally {
+        setIsSubmitting(false);
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      }
     }
   };
 
