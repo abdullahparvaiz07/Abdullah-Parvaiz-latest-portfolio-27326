@@ -684,14 +684,14 @@ export default function App() {
                       <div className="img">AP</div>
                       <div className="details">
                         <div className="name">Abdullah Parvaiz</div>
-                        <div className="username">@githubuser</div>
+                        <div className="username">@abdullahparvaiz07</div>
                       </div>
                     </div>
-                    <div className="about">100+ Repositories</div>
+                    <div className="about">10+ Repositories</div>
                   </div>
                 </div>
                 <div className="text">
-                  <a className="icon" href="#">
+                  <a className="icon" href="https://github.com/abdullahparvaiz07" target="_blank" rel="noopener noreferrer">
                     <div className="layer">
                       <span></span><span></span><span></span><span></span>
                       <span className="socialSVG">
@@ -711,14 +711,14 @@ export default function App() {
                       <div className="img">AP</div>
                       <div className="details">
                         <div className="name">Abdullah Parvaiz</div>
-                        <div className="username">@linkedinuser</div>
+                        <div className="username">@abdullah-parvaiz</div>
                       </div>
                     </div>
                     <div className="about">500+ Connections</div>
                   </div>
                 </div>
                 <div className="text">
-                  <a className="icon" href="#">
+                  <a className="icon" href="https://www.linkedin.com/in/abdullah-parvaiz-4a0492386/" target="_blank" rel="noopener noreferrer">
                     <div className="layer">
                       <span></span><span></span><span></span><span></span>
                       <span className="socialSVG">
