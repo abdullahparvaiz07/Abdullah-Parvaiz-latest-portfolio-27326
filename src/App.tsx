@@ -657,14 +657,14 @@ export default function App() {
                       <div className="img">AP</div>
                       <div className="details">
                         <div className="name">Abdullah Parvaiz</div>
-                        <div className="username">hello@example.com</div>
+                        <div className="username">abdullahparvaizofficial@gmail.com</div>
                       </div>
                     </div>
                     <div className="about">Let's build something!</div>
                   </div>
                 </div>
                 <div className="text">
-                  <a className="icon" href="mailto:hello@example.com">
+                  <a className="icon" href="mailto:abdullahparvaizofficial@gmail.com">
                     <div className="layer">
                       <span></span><span></span><span></span><span></span>
                       <span className="socialSVG">
