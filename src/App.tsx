@@ -70,6 +70,12 @@ export default function App() {
   const [errors, setErrors] = useState({ name: "", email: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const dismissSuccessModal = () => {
+    setShowSuccessModal(false);
+    setSubmitStatus('idle');
+  };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -113,15 +119,17 @@ export default function App() {
         if (result.success) {
           setSubmitStatus('success');
           setFormData({ name: "", email: "", message: "" });
+          setShowSuccessModal(true);
         } else {
           setSubmitStatus('error');
+          setTimeout(() => setSubmitStatus('idle'), 5000);
         }
       } catch (error) {
         console.error("Form submission error:", error);
         setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
       } finally {
         setIsSubmitting(false);
-        setTimeout(() => setSubmitStatus('idle'), 5000);
       }
     }
   };
@@ -935,14 +943,7 @@ export default function App() {
                   </div>
                 </button>
                 
-                {submitStatus === 'success' && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                    className="bg-green-500/10 border border-green-500/30 text-green-400 p-3 rounded-lg flex items-center gap-2 text-sm mt-4"
-                  >
-                    <CheckCircle2 size={16} /> Message sent successfully!
-                  </motion.div>
-                )}
+
               </div>
             </form>
           </motion.div>
@@ -965,6 +966,94 @@ export default function App() {
       </StickySlide>
       <Chatbot />
     </div>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-6"
+            onClick={dismissSuccessModal}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/70 backdrop-blur-md" />
+
+            {/* Modal Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="success-modal-card"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Decorative glows */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-green-500/20 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-16 -left-16 w-36 h-36 bg-orange-500/15 rounded-full blur-3xl pointer-events-none" />
+
+              {/* Animated Checkmark Circle */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.5, type: "spring", stiffness: 200, damping: 15 }}
+                className="success-modal-icon"
+              >
+                <motion.svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <motion.path
+                    d="M5 13l4 4L19 7"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ delay: 0.5, duration: 0.4, ease: "easeOut" }}
+                  />
+                </motion.svg>
+              </motion.div>
+
+              {/* Title */}
+              <motion.h3
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35, duration: 0.5 }}
+                className="text-2xl md:text-3xl font-bold text-white mt-6 mb-3 text-center"
+              >
+                Thank You!
+              </motion.h3>
+
+              {/* Message */}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45, duration: 0.5 }}
+                className="text-white/60 text-center text-sm md:text-base leading-relaxed max-w-sm mb-8"
+              >
+                Thank you for reaching out! Your email has been sent successfully. We'll get back to you as soon as possible.
+              </motion.p>
+
+              {/* Dismiss Button */}
+              <motion.button
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.5 }}
+                onClick={dismissSuccessModal}
+                className="success-modal-btn"
+              >
+                Got it
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
