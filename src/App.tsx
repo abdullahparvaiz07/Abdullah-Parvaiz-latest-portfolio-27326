@@ -795,12 +795,12 @@ export default function App() {
             <div className="mt-12">
               <a 
                 href="mailto:abdullahparvaizofficial@gmail.com" 
-                className="inline-flex items-center gap-4 text-lg md:text-xl font-medium text-white hover:text-orange-500 hover:underline transition-all group"
+                className="flex flex-row items-center gap-3 sm:gap-4 text-sm sm:text-lg md:text-xl font-medium text-white hover:text-orange-500 hover:underline transition-all group max-w-full"
               >
-                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-orange-500/20 group-hover:border-orange-500/50 transition-all">
-                  <Mail size={20} className="text-white group-hover:text-orange-500 transition-colors group-hover:animate-gentle-pulse" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-orange-500/20 group-hover:border-orange-500/50 transition-all shrink-0">
+                  <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-orange-500 transition-colors group-hover:animate-gentle-pulse" />
                 </div>
-                abdullahparvaizofficial@gmail.com
+                <span className="break-all">abdullahparvaizofficial@gmail.com</span>
               </a>
             </div>
           </motion.div>
