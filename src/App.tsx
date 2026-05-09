@@ -16,6 +16,7 @@ import ProjectCarousel from "./components/ProjectCarousel";
 import Chatbot from "./components/Chatbot";
 import CustomCursor from "./components/CustomCursor";
 import KeyboardShortcuts from "./components/KeyboardShortcuts";
+import ReviewSection from "./components/ReviewSection";
 
 const projects = [
   {
@@ -207,6 +208,10 @@ export default function App() {
               Contact
               <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-orange-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
             </a>
+            <a href="#reviews" className="relative group hover:text-orange-400 transition-colors">
+              Reviews
+              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-orange-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center"></span>
+            </a>
           </nav>
 
           {/* Right Spacer & Mobile Toggle */}
@@ -242,6 +247,7 @@ export default function App() {
                 <a href="#projects" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">Projects</a>
                 <a href="#news" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">News</a>
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">Contact</a>
+                <a href="#reviews" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">Reviews</a>
               </nav>
             </motion.div>
           )}
@@ -948,6 +954,9 @@ export default function App() {
             </form>
           </motion.div>
         </div>
+
+        {/* Review Section */}
+        <ReviewSection />
 
         {/* Footer Info */}
           <motion.div 
