@@ -3,9 +3,9 @@
  * can leave a star rating and comment about Abdullah's work.
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Star, MessageSquarePlus, User, Quote } from "lucide-react";
+import { Star, MessageSquarePlus, User, Quote, Trash2, ShieldCheck, X } from "lucide-react";
 
 /* ─── Types ─── */
 interface Review {
@@ -81,15 +81,44 @@ function StarRating({
 }
 
 /* ─── Single Review Card ─── */
-function ReviewCard({ review, index }: { review: Review; index: number }) {
+function ReviewCard({
+  review,
+  index,
+  isAdmin,
+  onDelete,
+}: {
+  review: Review;
+  index: number;
+  isAdmin: boolean;
+  onDelete: (id: number) => void;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.12 }}
-      className="review-card"
+      className={`review-card ${isAdmin ? "review-card--admin" : ""}`}
+      layout
     >
+      {/* Admin delete button */}
+      <AnimatePresence>
+        {isAdmin && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.6 }}
+            transition={{ duration: 0.25 }}
+            className="review-delete-btn"
+            onClick={() => onDelete(review.id)}
+            title="Delete this review"
+            aria-label="Delete review"
+          >
+            <Trash2 size={16} />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* Decorative quote icon */}
       <Quote
         size={32}
@@ -135,6 +164,31 @@ export default function ReviewSection() {
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState({ name: "", rating: "", comment: "" });
   const [showThankYou, setShowThankYou] = useState(false);
+
+  /* ─── Admin Mode (Ctrl + Shift + A) ─── */
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<number | null>(null);
+
+  const handleAdminShortcut = useCallback((e: KeyboardEvent) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") {
+      e.preventDefault();
+      setIsAdmin((prev) => !prev);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleAdminShortcut);
+    return () => window.removeEventListener("keydown", handleAdminShortcut);
+  }, [handleAdminShortcut]);
+
+  const requestDelete = (id: number) => setDeleteTarget(id);
+  const cancelDelete = () => setDeleteTarget(null);
+  const confirmDelete = () => {
+    if (deleteTarget !== null) {
+      setReviews((prev) => prev.filter((r) => r.id !== deleteTarget));
+      setDeleteTarget(null);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -225,11 +279,38 @@ export default function ReviewSection() {
             </div>
           </motion.div>
 
+          {/* ─── Admin Badge ─── */}
+          <AnimatePresence>
+            {isAdmin && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="review-admin-badge"
+              >
+                <ShieldCheck size={16} />
+                <span>Admin Mode — click the trash icon to delete reviews</span>
+                <button onClick={() => setIsAdmin(false)} className="review-admin-close">
+                  <X size={14} />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* ─── Cards Grid ─── */}
           <div className="review-grid">
-            {reviews.map((r, i) => (
-              <ReviewCard key={r.id} review={r} index={i} />
-            ))}
+            <AnimatePresence mode="popLayout">
+              {reviews.map((r, i) => (
+                <ReviewCard
+                  key={r.id}
+                  review={r}
+                  index={i}
+                  isAdmin={isAdmin}
+                  onDelete={requestDelete}
+                />
+              ))}
+            </AnimatePresence>
           </div>
 
           {/* ─── Submit Form ─── */}
@@ -396,6 +477,73 @@ export default function ReviewSection() {
               >
                 Awesome! 🚀
               </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── Delete Confirmation Modal ─── */}
+      <AnimatePresence>
+        {deleteTarget !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="review-modal-overlay"
+            onClick={cancelDelete}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 10 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="review-modal-card review-delete-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="review-modal-glow review-modal-glow--delete" />
+
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 14 }}
+                className="review-delete-icon-wrap"
+              >
+                <Trash2 size={32} />
+              </motion.div>
+
+              <motion.h3
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="review-modal-title"
+              >
+                Delete Review?
+              </motion.h3>
+
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="review-modal-msg"
+              >
+                This action cannot be undone. Are you sure you want to remove this testimonial?
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="review-delete-actions"
+              >
+                <button onClick={cancelDelete} className="review-delete-cancel">
+                  Cancel
+                </button>
+                <button onClick={confirmDelete} className="review-delete-confirm">
+                  <Trash2 size={15} />
+                  Delete
+                </button>
+              </motion.div>
             </motion.div>
           </motion.div>
         )}

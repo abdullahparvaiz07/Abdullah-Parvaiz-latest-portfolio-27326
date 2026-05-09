@@ -2607,3 +2607,157 @@
     font-size: 3rem;
   }
 }
+
+/* ===================================================================
+   Review Section — Admin Mode & Delete Functionality
+   =================================================================== */
+
+/* Admin badge */
+.review-admin-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.25rem;
+  margin-bottom: 1.75rem;
+  background: rgba(249, 115, 22, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 0.75rem;
+  color: #f97316;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(10px);
+}
+.review-admin-badge span {
+  flex: 1;
+}
+.review-admin-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+.review-admin-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* Card in admin mode */
+.review-card--admin {
+  border-color: rgba(239, 68, 68, 0.12);
+}
+.review-card--admin:hover {
+  border-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 25px rgba(239, 68, 68, 0.08);
+}
+
+/* Delete button on card */
+.review-delete-btn {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.85rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s,
+    box-shadow 0.25s;
+  backdrop-filter: blur(8px);
+}
+.review-delete-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.5);
+  transform: scale(1.12);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.25);
+}
+.review-delete-btn:active {
+  transform: scale(0.95);
+}
+
+/* Delete confirmation modal */
+.review-delete-modal {
+  border-color: rgba(239, 68, 68, 0.15);
+}
+.review-modal-glow--delete {
+  top: -40px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.review-delete-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ef4444;
+  margin-bottom: 1rem;
+}
+
+.review-delete-actions {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.review-delete-cancel {
+  flex: 1;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.7rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.review-delete-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.review-delete-confirm {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border: none;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.25s;
+  box-shadow: 0 4px 18px rgba(239, 68, 68, 0.3);
+}
+.review-delete-confirm:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(239, 68, 68, 0.45);
+}
+.review-delete-confirm:active {
+  transform: scale(0.97);
+}
