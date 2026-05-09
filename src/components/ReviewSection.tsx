@@ -156,14 +156,32 @@ function ReviewCard({
   );
 }
 
+const STORAGE_KEY = "portfolio-reviews";
+
 /* ─── Main Section ─── */
 export default function ReviewSection() {
-  const [reviews, setReviews] = useState<Review[]>(seedReviews);
+  const [reviews, setReviews] = useState<Review[]>(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch {}
+    return seedReviews;
+  });
   const [name, setName] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState({ name: "", rating: "", comment: "" });
   const [showThankYou, setShowThankYou] = useState(false);
+
+  /* Persist reviews to localStorage whenever they change */
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+    } catch {}
+  }, [reviews]);
 
   /* ─── Admin Mode (Ctrl + Shift + A) ─── */
   const [isAdmin, setIsAdmin] = useState(false);
