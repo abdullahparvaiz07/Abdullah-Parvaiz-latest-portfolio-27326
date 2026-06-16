@@ -303,9 +303,9 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="lg:col-span-5 flex flex-col justify-center items-center lg:items-end mt-12 lg:mt-0"
+            className="lg:col-span-5 flex flex-col justify-center items-center lg:items-end mt-8 sm:mt-10 lg:mt-0"
           >
-            <div className="w-full max-w-[1000px] relative mix-blend-screen pointer-events-none scale-[1.8] lg:scale-[2.5] origin-center lg:origin-right translate-x-8 lg:translate-x-16">
+            <div className="w-full max-w-[1000px] relative mix-blend-screen pointer-events-none scale-[1.3] sm:scale-[1.5] md:scale-[1.8] lg:scale-[2.5] origin-center lg:origin-right translate-x-0 sm:translate-x-4 md:translate-x-8 lg:translate-x-16">
               <video
                 autoPlay
                 loop
@@ -548,7 +548,7 @@ export default function App() {
               <div className="absolute inset-0 rounded-full border border-white/5 scale-[0.6] z-0 animate-[spin_40s_linear_infinite]"></div>
               <div className="absolute inset-0 rounded-full border border-orange-500/10 scale-[0.9] z-0 animate-[spin_60s_linear_infinite_reverse]"></div>
               
-              <div className="scale-[1.15] md:scale-125 lg:scale-150 relative z-10 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.15)] mix-blend-screen mix-blend-plus-lighter">
+              <div className="scale-[1.4] sm:scale-[1.3] md:scale-125 lg:scale-150 relative z-10 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.15)] mix-blend-screen mix-blend-plus-lighter">
                 <IconCloudDemo />
               </div>
             </motion.div>

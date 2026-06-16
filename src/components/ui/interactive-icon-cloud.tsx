@@ -40,7 +40,7 @@ export const cloudProps: Omit<ICloud, "children"> = {
 export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
   return renderSimpleIcon({
     icon,
-    size: 42,
+    size: 52,
     aProps: {
       href: undefined,
       target: undefined,
