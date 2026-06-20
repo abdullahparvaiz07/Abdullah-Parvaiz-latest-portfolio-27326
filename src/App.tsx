@@ -548,7 +548,7 @@ export default function App() {
               <div className="absolute inset-0 rounded-full border border-white/5 scale-[0.6] z-0 animate-[spin_40s_linear_infinite]"></div>
               <div className="absolute inset-0 rounded-full border border-orange-500/10 scale-[0.9] z-0 animate-[spin_60s_linear_infinite_reverse]"></div>
               
-              <div className="scale-[1.4] sm:scale-[1.3] md:scale-125 lg:scale-150 relative z-10 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.15)] mix-blend-screen mix-blend-plus-lighter">
+              <div className="scale-[1.4] sm:scale-[1.3] md:scale-110 lg:scale-100 relative z-10 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.15)] mix-blend-screen mix-blend-plus-lighter">
                 <IconCloudDemo />
               </div>
             </motion.div>
