@@ -17,6 +17,9 @@ import Chatbot from "./components/Chatbot";
 import CustomCursor from "./components/CustomCursor";
 import KeyboardShortcuts from "./components/KeyboardShortcuts";
 import ReviewSection from "./components/ReviewSection";
+import TransitionOverlay from "./os/TransitionOverlay";
+import Desktop from "./os/Desktop";
+
 
 const projects = [
   {
@@ -43,6 +46,13 @@ const projects = [
 ];
 
 export default function App() {
+  const [isOSMode, setIsOSMode] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const toggleOSMode = () => {
+    setIsTransitioning(true);
+  };
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(() => {
     const hasLoaded = sessionStorage.getItem("hasLoaded");
@@ -161,8 +171,21 @@ export default function App() {
       <CustomCursor />
       <KeyboardShortcuts />
 
-      <div className="bg-black text-white font-sans selection:bg-orange-500/30">
-        <motion.div
+      {isTransitioning && (
+        <TransitionOverlay onComplete={() => {
+          setIsTransitioning(false);
+          setIsOSMode(true);
+        }} />
+      )}
+
+      {isOSMode && !isTransitioning && (
+        <Desktop onExitOS={() => setIsOSMode(false)} />
+      )}
+
+      {!isOSMode && (
+        <>
+          <div className="bg-black text-white font-sans selection:bg-orange-500/30">
+            <motion.div
           className="fixed top-0 left-0 right-0 h-1.5 bg-orange-500 origin-left z-50 shadow-[0_0_10px_rgba(249,115,22,0.8)]"
           style={{ scaleX }}
         />
@@ -215,7 +238,37 @@ export default function App() {
           </nav>
 
           {/* Right Spacer & Mobile Toggle */}
-          <div className="flex-1 flex items-center justify-end">
+          <div className="flex-1 flex items-center justify-end gap-4">
+            {/* OS Toggle Button */}
+            <div className="hidden md:block" title="Enter Abdullah OS">
+              <label className="skel-switch">
+                <input 
+                  type="checkbox" 
+                  checked={isOSMode || isTransitioning}
+                  onChange={() => {
+                    if (!isOSMode && !isTransitioning) toggleOSMode();
+                  }}
+                />
+                <span className="skel-thumb">
+                  <div className="skel-cranium"></div>
+                  <div className="skel-mouth"></div>
+                </span>
+                <span className="skel-arm-wrapper">
+                  <span className="skel-arm">
+                    <span className="skel-bone"></span>
+                    <span className="skel-bone"></span>
+                    <span className="skel-hand">
+                      <span className="skel-bone"></span>
+                      <span className="skel-bone"></span>
+                      <span className="skel-bone"></span>
+                      <span className="skel-bone"></span>
+                    </span>
+                    <span className="skel-big"></span>
+                  </span>
+                </span>
+              </label>
+            </div>
+
             <div className="md:hidden flex items-center relative z-[100]">
               <input 
                 type="checkbox" 
@@ -248,6 +301,38 @@ export default function App() {
                 <a href="#news" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">News</a>
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">Contact</a>
                 <a href="#reviews" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-orange-400 transition-colors">Reviews</a>
+
+                {/* OS Toggle inside Mobile Menu */}
+                <div className="mt-4 flex flex-col items-center">
+                  <span className="text-sm text-gray-400 mb-4 tracking-normal normal-case font-normal">Toggle OS Mode</span>
+                  <label className="skel-switch" style={{ transform: 'scale(0.8)', transformOrigin: 'center' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={isOSMode || isTransitioning}
+                      onChange={() => {
+                        setIsMobileMenuOpen(false);
+                        if (!isOSMode && !isTransitioning) toggleOSMode();
+                      }}
+                    />
+                    <span className="skel-thumb">
+                      <div className="skel-cranium"></div>
+                      <div className="skel-mouth"></div>
+                    </span>
+                    <span className="skel-arm-wrapper">
+                      <span className="skel-arm">
+                        <span className="skel-bone"></span>
+                        <span className="skel-bone"></span>
+                        <span className="skel-hand">
+                          <span className="skel-bone"></span>
+                          <span className="skel-bone"></span>
+                          <span className="skel-bone"></span>
+                          <span className="skel-bone"></span>
+                        </span>
+                        <span className="skel-big"></span>
+                      </span>
+                    </span>
+                  </label>
+                </div>
               </nav>
             </motion.div>
           )}
@@ -1063,6 +1148,8 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+        </>
+      )}
     </>
   );
 }
