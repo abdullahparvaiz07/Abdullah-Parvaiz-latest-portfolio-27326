@@ -203,21 +203,21 @@
   font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Title */
 .welcome-title-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   perspective: 600px;
   margin-bottom: 20px;
 }
 
 .welcome-title-char {
-  font-size: clamp(36px, 7vw, 72px);
+  font-size: clamp(24px, 8vw, 72px);
   font-weight: 800;
   color: white;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   line-height: 1;
   background: linear-gradient(180deg, #ffffff 0%, #f97316 50%, #ea580c 100%);
   background-clip: text;
@@ -349,7 +349,7 @@
   .welcome-orbit--1 { width: 140px; height: 140px; }
   .welcome-orbit--2 { width: 220px; height: 220px; }
   .welcome-orbit--3 { width: 300px; height: 300px; }
-  .welcome-logo-container { width: 72px; height: 72px; }
+  .welcome-logo-container { width: 72px; height: 72px; margin-bottom: 16px; }
   .welcome-logo-img { width: 44px; }
   .welcome-glow { width: 350px; height: 350px; }
   .welcome-corner { width: 24px; height: 24px; }
@@ -357,6 +357,10 @@
   .welcome-corner--tr { top: 16px; right: 16px; }
   .welcome-corner--bl { bottom: 16px; left: 16px; }
   .welcome-corner--br { bottom: 16px; right: 16px; }
+  .welcome-subtitle { font-size: 10px; margin-bottom: 4px; }
+  .welcome-title-wrapper { margin-bottom: 12px; }
+  .welcome-version { font-size: 9px; margin-bottom: 16px; flex-direction: column; text-align: center; gap: 4px; }
+  .welcome-tagline { font-size: 11px; margin-bottom: 20px; padding: 0 16px; }
 }
 
 /* ─── Transition Overlay ─── */
