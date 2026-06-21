@@ -48,9 +48,14 @@ const projects = [
 export default function App() {
   const [isOSMode, setIsOSMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isToggleAnimating, setIsToggleAnimating] = useState(false);
 
   const toggleOSMode = () => {
-    setIsTransitioning(true);
+    setIsToggleAnimating(true);
+    setTimeout(() => {
+      setIsTransitioning(true);
+      setIsToggleAnimating(false);
+    }, 1500);
   };
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -244,9 +249,9 @@ export default function App() {
               <label className="skel-switch">
                 <input 
                   type="checkbox" 
-                  checked={isOSMode || isTransitioning}
+                  checked={isOSMode || isTransitioning || isToggleAnimating}
                   onChange={() => {
-                    if (!isOSMode && !isTransitioning) toggleOSMode();
+                    if (!isOSMode && !isTransitioning && !isToggleAnimating) toggleOSMode();
                   }}
                 />
                 <span className="skel-thumb">
@@ -308,10 +313,10 @@ export default function App() {
                   <label className="skel-switch" style={{ transform: 'scale(0.8)', transformOrigin: 'center' }}>
                     <input 
                       type="checkbox" 
-                      checked={isOSMode || isTransitioning}
+                      checked={isOSMode || isTransitioning || isToggleAnimating}
                       onChange={() => {
                         setIsMobileMenuOpen(false);
-                        if (!isOSMode && !isTransitioning) toggleOSMode();
+                        if (!isOSMode && !isTransitioning && !isToggleAnimating) toggleOSMode();
                       }}
                     />
                     <span className="skel-thumb">

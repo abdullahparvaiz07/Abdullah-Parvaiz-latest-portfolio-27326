@@ -69,6 +69,296 @@
 @keyframes os-toggle-fill { to { fill: rgba(249, 115, 22, 0.65); } }
 @keyframes os-toggle-border { to { border-color: rgba(249, 115, 22, 0.15); } }
 
+/* ─── Welcome Screen ─── */
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.welcome-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.4;
+}
+
+.welcome-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.25) 0%, rgba(249, 115, 22, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Orbit rings */
+.welcome-orbits {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.welcome-orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(249, 115, 22, 0.08);
+}
+
+.welcome-orbit--1 {
+  width: 200px;
+  height: 200px;
+  border-color: rgba(249, 115, 22, 0.15);
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.05) inset;
+}
+
+.welcome-orbit--2 {
+  width: 340px;
+  height: 340px;
+  border-color: rgba(249, 115, 22, 0.08);
+  border-style: dashed;
+}
+
+.welcome-orbit--3 {
+  width: 480px;
+  height: 480px;
+  border-color: rgba(249, 115, 22, 0.04);
+}
+
+/* Center content */
+.welcome-center {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+
+/* Logo container */
+.welcome-logo-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.welcome-logo-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(249, 115, 22, 0.3);
+  animation: welcome-ring-pulse 3s ease-in-out infinite;
+}
+
+.welcome-logo-ring--inner {
+  inset: -3px;
+  border-width: 1px;
+  border-color: rgba(249, 115, 22, 0.15);
+  animation-delay: 0.5s;
+}
+
+@keyframes welcome-ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.5; }
+}
+
+.welcome-logo-img {
+  width: 60px;
+  height: auto;
+  filter: invert(1) drop-shadow(0 0 20px rgba(249, 115, 22, 0.5));
+  z-index: 1;
+}
+
+/* Subtitle */
+.welcome-subtitle {
+  font-size: 12px;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Title */
+.welcome-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 600px;
+  margin-bottom: 20px;
+}
+
+.welcome-title-char {
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  background: linear-gradient(180deg, #ffffff 0%, #f97316 50%, #ea580c 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 30px rgba(249, 115, 22, 0.3));
+  display: inline-block;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+
+.welcome-title-space {
+  width: 0.3em;
+}
+
+/* Version badge */
+.welcome-version {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  margin-bottom: 24px;
+}
+
+.welcome-version-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  animation: welcome-dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes welcome-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Divider */
+.welcome-divider {
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(249, 115, 22, 0.5),
+    transparent
+  );
+  margin-bottom: 20px;
+  transform-origin: center;
+}
+
+/* Tagline */
+.welcome-tagline {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin-bottom: 28px;
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Loader dots */
+.welcome-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-loader-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.welcome-loader-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f97316;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+
+/* Corner decorations */
+.welcome-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  z-index: 20;
+}
+
+.welcome-corner--tl {
+  top: 30px;
+  left: 30px;
+  border-top: 2px solid rgba(249, 115, 22, 0.3);
+  border-left: 2px solid rgba(249, 115, 22, 0.3);
+}
+
+.welcome-corner--tr {
+  top: 30px;
+  right: 30px;
+  border-top: 2px solid rgba(249, 115, 22, 0.3);
+  border-right: 2px solid rgba(249, 115, 22, 0.3);
+}
+
+.welcome-corner--bl {
+  bottom: 30px;
+  left: 30px;
+  border-bottom: 2px solid rgba(249, 115, 22, 0.3);
+  border-left: 2px solid rgba(249, 115, 22, 0.3);
+}
+
+.welcome-corner--br {
+  bottom: 30px;
+  right: 30px;
+  border-bottom: 2px solid rgba(249, 115, 22, 0.3);
+  border-right: 2px solid rgba(249, 115, 22, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-orbits {
+    width: 300px;
+    height: 300px;
+  }
+  .welcome-orbit--1 { width: 140px; height: 140px; }
+  .welcome-orbit--2 { width: 220px; height: 220px; }
+  .welcome-orbit--3 { width: 300px; height: 300px; }
+  .welcome-logo-container { width: 72px; height: 72px; }
+  .welcome-logo-img { width: 44px; }
+  .welcome-glow { width: 350px; height: 350px; }
+  .welcome-corner { width: 24px; height: 24px; }
+  .welcome-corner--tl { top: 16px; left: 16px; }
+  .welcome-corner--tr { top: 16px; right: 16px; }
+  .welcome-corner--bl { bottom: 16px; left: 16px; }
+  .welcome-corner--br { bottom: 16px; right: 16px; }
+}
+
 /* ─── Transition Overlay ─── */
 .os-transition-overlay {
   position: fixed;

@@ -5,6 +5,7 @@
 import React, { useState, useCallback } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { OSProvider } from './OSContext';
+import WelcomeScreen from './WelcomeScreen';
 import BootSequence from './BootSequence';
 import Taskbar from './Taskbar';
 import DesktopIcon from './DesktopIcon';
@@ -29,7 +30,13 @@ interface DesktopProps {
 }
 
 function DesktopInner({ onExitOS }: DesktopProps) {
-  const [isBooting, setIsBooting] = useState(true);
+  const [isWelcoming, setIsWelcoming] = useState(true);
+  const [isBooting, setIsBooting] = useState(false);
+
+  const handleWelcomeComplete = useCallback(() => {
+    setIsWelcoming(false);
+    setIsBooting(true);
+  }, []);
 
   const handleBootComplete = useCallback(() => {
     setIsBooting(false);
@@ -44,11 +51,17 @@ function DesktopInner({ onExitOS }: DesktopProps) {
       />
       <div className="os-wallpaper-overlay" />
 
+      {/* Welcome Screen — plays first */}
+      <AnimatePresence>
+        {isWelcoming && <WelcomeScreen onComplete={handleWelcomeComplete} />}
+      </AnimatePresence>
+
+      {/* Boot Sequence — plays after welcome */}
       <AnimatePresence>
         {isBooting && <BootSequence onComplete={handleBootComplete} />}
       </AnimatePresence>
 
-      {!isBooting && (
+      {!isWelcoming && !isBooting && (
         <>
           {/* Desktop Icon Grid */}
           <div className="os-desktop-grid">
@@ -107,3 +120,4 @@ export default function Desktop({ onExitOS }: DesktopProps) {
     </OSProvider>
   );
 }
+
